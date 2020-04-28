@@ -1,0 +1,388 @@
+\hypertarget{class_comparison}{}\doxysection{Comparison Class Reference}
+\label{class_comparison}\index{Comparison@{Comparison}}
+
+
+Class for the subproblem of the comparison.  
+
+
+
+
+{\ttfamily \#include $<$Comparison.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_comparison_aabdc5edce9959e653d3150cbc421d943}{Comparison}} (std\+::string debug)
+\item 
+bool \mbox{\hyperlink{class_comparison_a8bfb9290f15d8dc741f2c84f6b22a300}{hausdorff}} (P\+T\+C\+::\+Ptr cam, P\+T\+C\+::\+Ptr comp, float \&hausdorff, float \&avg\+\_\+dist)
+\item 
+bool \mbox{\hyperlink{class_comparison_ad60800ecaf8171fa44e8c5fc93dff67e}{hausdorff}} (P\+T\+C\+::\+Ptr cam, P\+T\+C\+::\+Ptr comp, std\+::vector$<$ double $>$ thresholds, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Point\+X\+Y\+Z\+R\+GB $>$\+::Ptr comp\+\_\+hausdorff, std\+::vector$<$ int $>$ \&defects, float \&hausdorff, float \&avg\+\_\+dist, bool outlier\+Deletion=false, bool no\+Cloud\+Needed=false)
+\item 
+void \mbox{\hyperlink{class_comparison_a49fb3a72230475783a408793e7f95996}{find\+Edges}} (P\+T\+C\+::\+Ptr cloud, double edge\+\_\+radius, int max\+Neighbors, double leaf\+Size)
+\item 
+bool \mbox{\hyperlink{class_comparison_a3bfd7a0b5953fc1c3e9bd0588bffd0e5}{find\+Circle}} (P\+T\+C\+::\+Ptr plane, pcl\+::\+Model\+Coefficients\+::\+Ptr plane\+Coeffs, P\+T\+C\+::\+Ptr circle, pcl\+::\+Model\+Coefficients\+::\+Ptr coefficients, double dist\+Thresh, int max\+Iterations, double min\+Inlier\+Ratio, double radius=0, double radius\+Lower\+Delta=0, double radius\+Upper\+Delta=0, Eigen\+::\+Vector3f $\ast$center=new Eigen\+::\+Vector3f(), double eps\+Center=0, double edge\+\_\+radius=0, int max\+Neighbors=0, double leaf\+Size=0)
+\item 
+bool \mbox{\hyperlink{class_comparison_a701420c17d3cef796c43c3e0567dfd41}{find\+Line}} (P\+T\+C\+::\+Ptr plane, P\+T\+C\+::\+Ptr line, pcl\+::\+Model\+Coefficients\+::\+Ptr coefficients, double dist\+Thresh, int max\+Iterations, double min\+Inlier\+Ratio, Eigen\+::\+Vector3f $\ast$axis=new Eigen\+::\+Vector3f(), double eps\+Axis=0, P\+T\+C\+::\+Ptr ref=P\+T\+C\+::\+Ptr(new P\+TC), double eps\+Ref=0, double edge\+\_\+radius=0, int max\+Neighbors=0, double leaf\+Size=0)
+\item 
+bool \mbox{\hyperlink{class_comparison_a9deb87b67c75a86f59a402954e99d451}{find\+Plane}} (P\+T\+C\+::\+Ptr cloud, P\+T\+C\+::\+Ptr plane, pcl\+::\+Model\+Coefficients\+::\+Ptr coefficients, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr normals, double normal\+\_\+weight, double dist\+Thresh, int max\+Iterations, double min\+Inlier\+Ratio, Eigen\+::\+Vector3f $\ast$normal\+Axis=new Eigen\+::\+Vector3f(), double eps\+Angle=0, double distance\+From\+Origin=0, double eps\+Dist=0, P\+T\+C\+::\+Ptr projected\+Plane=P\+T\+C\+::\+Ptr(new P\+TC))
+\item 
+bool \mbox{\hyperlink{class_comparison_a6d8cd1cdc92a658d33e9740f0604e3a8}{find\+Cyl}} (P\+T\+C\+::\+Ptr cloud, P\+T\+C\+::\+Ptr cyl, pcl\+::\+Model\+Coefficients\+::\+Ptr coefficients, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr normals, double normal\+\_\+weight, double dist\+Thresh, int max\+Iterations, double min\+Inlier\+Ratio, Eigen\+::\+Vector3f $\ast$axis=new Eigen\+::\+Vector3f(), double eps\+Axis=0, double radius=0, double eps\+Radius=0, Eigen\+::\+Vector3f $\ast$center=new Eigen\+::\+Vector3f(), double eps\+Center=0, P\+T\+C\+::\+Ptr projected\+Cyl=P\+T\+C\+::\+Ptr(new P\+TC))
+\item 
+bool \mbox{\hyperlink{class_comparison_af111bdeb5135b4d518c5db4c23306db6}{find\+Feature}} (pcl\+::\+S\+A\+C\+Segmentation\+From\+Normals$<$ PT, pcl\+::\+Normal $>$ seg, P\+T\+C\+::\+Ptr remaining\+Cloud, P\+T\+C\+::\+Ptr feature\+Cloud, pcl\+::\+Model\+Coefficients\+::\+Ptr coefficients, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr normals, double normal\+Weight, double dist\+Thresh, int max\+Iterations, int min\+Inliers, bool project\+Inliers, P\+T\+C\+::\+Ptr projected\+Cloud=P\+T\+C\+::\+Ptr(new P\+TC), pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr feature\+Normals=pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr(new pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$))
+\item 
+void \mbox{\hyperlink{class_comparison_a18fb4ab0671879c6d4e750cddb568c06}{check\+Tolerances}} (P\+T\+C\+::\+Ptr cam, std\+::vector$<$ \mbox{\hyperlink{struct_dimension}{Dimension}} $>$ \&tolerances, double edge\+\_\+radius, int max\+Neighbors, double leaf\+Size, double min\+Inlier\+Ratio, double max\+Tolerance, int number\+Of\+Iterations\+\_\+\+Tol, double tolerance\+\_\+search\+\_\+radius, double plane\+\_\+normal\+\_\+weight, double cyl\+\_\+normal\+\_\+weight, double plane\+\_\+dist\+\_\+thresh, double line\+\_\+dist\+\_\+thresh, double circle\+\_\+dist\+\_\+thresh, double plane\+\_\+eps\+Dist, double circle\+\_\+eps\+Center, double cyl\+\_\+eps\+Center, double angle\+Thres, double angular\+\_\+angle\+Thres)
+\item 
+void \mbox{\hyperlink{class_comparison_a443a1ebbede462e24570919ed2c42440}{visualize\+Tolerances}} (P\+T\+C\+::\+Ptr cam, std\+::vector$<$ \mbox{\hyperlink{struct_dimension}{Dimension}} $>$ tolerances, std\+::string name=\char`\"{}Tolerances\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for the subproblem of the comparison. 
+
+This class allows to perform all kinds of feature detections\+: edges, circles, lines, planes and cylinders. Furthermore, it also offers a more generic feature detection function. Moreover, the function for the whole tolerance check is implemented as well. \begin{DoxyAuthor}{Author}
+Justin Heinz, Oliver Krumpek et Al. 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_comparison_aabdc5edce9959e653d3150cbc421d943}\label{class_comparison_aabdc5edce9959e653d3150cbc421d943}} 
+\index{Comparison@{Comparison}!Comparison@{Comparison}}
+\index{Comparison@{Comparison}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{Comparison()}{Comparison()}}
+{\footnotesize\ttfamily Comparison\+::\+Comparison (\begin{DoxyParamCaption}\item[{std\+::string}]{debug }\end{DoxyParamCaption})}
+
+Standard constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em debug} & -\/ how many debug info should be displayed (0 -\/ none,1 -\/ some,2 -\/ all) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_comparison_a18fb4ab0671879c6d4e750cddb568c06}\label{class_comparison_a18fb4ab0671879c6d4e750cddb568c06}} 
+\index{Comparison@{Comparison}!checkTolerances@{checkTolerances}}
+\index{checkTolerances@{checkTolerances}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{checkTolerances()}{checkTolerances()}}
+{\footnotesize\ttfamily void Comparison\+::check\+Tolerances (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cam,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_dimension}{Dimension}} $>$ \&}]{tolerances,  }\item[{double}]{edge\+\_\+radius,  }\item[{int}]{max\+Neighbors,  }\item[{double}]{leaf\+Size,  }\item[{double}]{min\+Inlier\+Ratio,  }\item[{double}]{max\+Tolerance,  }\item[{int}]{number\+Of\+Iterations\+\_\+\+Tol,  }\item[{double}]{tolerance\+\_\+search\+\_\+radius,  }\item[{double}]{plane\+\_\+normal\+\_\+weight,  }\item[{double}]{cyl\+\_\+normal\+\_\+weight,  }\item[{double}]{plane\+\_\+dist\+\_\+thresh,  }\item[{double}]{line\+\_\+dist\+\_\+thresh,  }\item[{double}]{circle\+\_\+dist\+\_\+thresh,  }\item[{double}]{plane\+\_\+eps\+Dist,  }\item[{double}]{circle\+\_\+eps\+Center,  }\item[{double}]{cyl\+\_\+eps\+Center,  }\item[{double}]{angle\+Thres,  }\item[{double}]{angular\+\_\+angle\+Thres }\end{DoxyParamCaption})}
+
+Algorithm for checking all tolerances of a given tolerance definition. Measured is set to -\/1, when a feature could not be found 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cam} & -\/ the cloud in which the features should be found and measured \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em tolerances} & -\/ the vector of tolerances used. It is returned with the measured value. \\
+\hline
+\mbox{\texttt{ in}}  & {\em edge\+\_\+radius} & -\/ search radius for edge detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Neighbors} & -\/ The maximum number of neighbors a point is allowed to have within the search radius to be considered as an edge \\
+\hline
+\mbox{\texttt{ in}}  & {\em leaf\+Size} & -\/ leaf\+Size for the downsampling \\
+\hline
+\mbox{\texttt{ in}}  & {\em min\+Inlier\+Ratio} & -\/ the minimum number of inliers in relation to the maximum number of possible inliers a feature must have to be considered as valid \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Tolerance} & -\/ the maximal detectable tolerance during the tolerance check \\
+\hline
+\mbox{\texttt{ in}}  & {\em number\+Of\+Iterations\+\_\+\+Tol} & -\/ the number of iterations for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em plane\+\_\+normal\+\_\+weight} & -\/ the weight of the deviation in the surface normals in comparison to the deviation in the position for the plane detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em cyl\+\_\+normal\+\_\+weight} & -\/ the weight of the deviation in the surface normals in comparison to the deviation in the position for the cylinder detection\# \\
+\hline
+\mbox{\texttt{ in}}  & {\em plane\+\_\+dist\+\_\+thresh} & -\/ distance Threshold for the plane detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em line\+\_\+dist\+\_\+thresh} & -\/ distance Threshold for the line detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em circle\+\_\+dist\+\_\+thresh} & -\/ distance Threshold for the circle detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em plane\+\_\+eps\+Dist} & -\/ the allowed deviation in distance for the plane detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em circle\+\_\+eps\+Center} & -\/ allowed deviation with respect to the center for the circle detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em angular\+Thres} & -\/ the allowed angular deviation to the respetively given axes in rad \\
+\hline
+\mbox{\texttt{ in}}  & {\em angular\+Thres} & -\/ the allowed angular deviation to the respetively given axes in rad for angular tolerances \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_comparison_a3bfd7a0b5953fc1c3e9bd0588bffd0e5}\label{class_comparison_a3bfd7a0b5953fc1c3e9bd0588bffd0e5}} 
+\index{Comparison@{Comparison}!findCircle@{findCircle}}
+\index{findCircle@{findCircle}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{findCircle()}{findCircle()}}
+{\footnotesize\ttfamily bool Comparison\+::find\+Circle (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{plane,  }\item[{pcl\+::\+Model\+Coefficients\+::\+Ptr}]{plane\+Coeffs,  }\item[{P\+T\+C\+::\+Ptr}]{circle,  }\item[{pcl\+::\+Model\+Coefficients\+::\+Ptr}]{coefficients,  }\item[{double}]{dist\+Thresh,  }\item[{int}]{max\+Iterations,  }\item[{double}]{min\+Inlier\+Ratio,  }\item[{double}]{radius = {\ttfamily 0},  }\item[{double}]{radius\+Lower\+Delta = {\ttfamily 0},  }\item[{double}]{radius\+Upper\+Delta = {\ttfamily 0},  }\item[{Eigen\+::\+Vector3f $\ast$}]{center = {\ttfamily new~Eigen\+:\+:Vector3f()},  }\item[{double}]{eps\+Center = {\ttfamily 0},  }\item[{double}]{edge\+\_\+radius = {\ttfamily 0},  }\item[{int}]{max\+Neighbors = {\ttfamily 0},  }\item[{double}]{leaf\+Size = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Detection of circles in a plane. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em plane} & -\/ plane used for the circle detection. The edges in the plane are returned. \\
+\hline
+\mbox{\texttt{ in}}  & {\em plane\+Coeffs} & -\/ the coefficients of the plane \\
+\hline
+\mbox{\texttt{ out}}  & {\em circle} & -\/ a pointcloud representing the circle found \\
+\hline
+\mbox{\texttt{ out}}  & {\em coefficients} & -\/ the coefficients of the circle found \\
+\hline
+\mbox{\texttt{ in}}  & {\em dist\+Thresh} & -\/ distance Threshold for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Iterations} & -\/ the number of iterations for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em min\+Inlier\+Ratio} & -\/ the minimum number of inliers in relation to the maximum number of possible inliers a feature must have to be considered as valid \\
+\hline
+\mbox{\texttt{ in}}  & {\em radius} & -\/ the expected radius of the circle \\
+\hline
+\mbox{\texttt{ in}}  & {\em radius\+Lower\+Delta} & -\/ the maximal allowed negative deviation \\
+\hline
+\mbox{\texttt{ in}}  & {\em radius\+Uper\+Delta} & -\/ the maximal allowed positive deviation \\
+\hline
+\mbox{\texttt{ in}}  & {\em center} & -\/ expected center point of the circle \\
+\hline
+\mbox{\texttt{ in}}  & {\em eps\+Center} & -\/ allowed deviation with respect to the center \\
+\hline
+\mbox{\texttt{ in}}  & {\em edge\+\_\+radius} & -\/ search radius for edge detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Neighbors} & -\/ The maximum number of neighbors a point is allowed to have within the search radius to be considered as an edge \\
+\hline
+\mbox{\texttt{ in}}  & {\em leaf\+Size} & -\/ leaf\+Size for the downsampling \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a circle within the thresholds was found, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_comparison_a6d8cd1cdc92a658d33e9740f0604e3a8}\label{class_comparison_a6d8cd1cdc92a658d33e9740f0604e3a8}} 
+\index{Comparison@{Comparison}!findCyl@{findCyl}}
+\index{findCyl@{findCyl}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{findCyl()}{findCyl()}}
+{\footnotesize\ttfamily bool Comparison\+::find\+Cyl (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud,  }\item[{P\+T\+C\+::\+Ptr}]{cyl,  }\item[{pcl\+::\+Model\+Coefficients\+::\+Ptr}]{coefficients,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{normals,  }\item[{double}]{normal\+\_\+weight,  }\item[{double}]{dist\+Thresh,  }\item[{int}]{max\+Iterations,  }\item[{double}]{min\+Inlier\+Ratio,  }\item[{Eigen\+::\+Vector3f $\ast$}]{axis = {\ttfamily new~Eigen\+:\+:Vector3f()},  }\item[{double}]{eps\+Axis = {\ttfamily 0},  }\item[{double}]{radius = {\ttfamily 0},  }\item[{double}]{eps\+Radius = {\ttfamily 0},  }\item[{Eigen\+::\+Vector3f $\ast$}]{center = {\ttfamily new~Eigen\+:\+:Vector3f()},  }\item[{double}]{eps\+Center = {\ttfamily 0},  }\item[{P\+T\+C\+::\+Ptr}]{projected\+Cyl = {\ttfamily PTC\+:\+:Ptr(new~PTC)} }\end{DoxyParamCaption})}
+
+Detection of cylinders. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em cloud} & -\/ cloud used for the line detection. The cloud without the cylinder is returned \\
+\hline
+\mbox{\texttt{ out}}  & {\em cyl} & -\/ a pointcloud representing the cylinder found \\
+\hline
+\mbox{\texttt{ out}}  & {\em coefficients} & -\/ the coefficients of the cylinder found \\
+\hline
+\mbox{\texttt{ in}}  & {\em normals} & -\/ the surface normals of the cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em normal\+\_\+weight} & -\/ the weight of the deviation in the surface normals in comparison to the deviation in the position \\
+\hline
+\mbox{\texttt{ in}}  & {\em dist\+Thresh} & -\/ distance Threshold for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Iterations} & -\/ the number of iterations for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em min\+Inlier\+Ratio} & -\/ the minimum number of inliers in relation to the maximum number of possible inliers a feature must have to be considered as valid \\
+\hline
+\mbox{\texttt{ in}}  & {\em axis} & -\/ the expected center axis of the cylinder \\
+\hline
+\mbox{\texttt{ in}}  & {\em eps\+Angle} & -\/ the allowed angular deviation to the given axis in rad \\
+\hline
+\mbox{\texttt{ in}}  & {\em radius} & -\/ the expected radius of the cylinder \\
+\hline
+\mbox{\texttt{ in}}  & {\em eps\+Radius} & -\/ the allowed deviation in radius \\
+\hline
+\mbox{\texttt{ in}}  & {\em center} & -\/ expected center point of the cylinder \\
+\hline
+\mbox{\texttt{ in}}  & {\em eps\+Center} & -\/ allowed deviation with respect to the center \\
+\hline
+\mbox{\texttt{ out}}  & {\em projected\+Cyl} & -\/ the cylinder with all inliers projected to the found model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a cylinder within the thresholds was found, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_comparison_a49fb3a72230475783a408793e7f95996}\label{class_comparison_a49fb3a72230475783a408793e7f95996}} 
+\index{Comparison@{Comparison}!findEdges@{findEdges}}
+\index{findEdges@{findEdges}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{findEdges()}{findEdges()}}
+{\footnotesize\ttfamily void Comparison\+::find\+Edges (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud,  }\item[{double}]{edge\+\_\+radius,  }\item[{int}]{max\+Neighbors,  }\item[{double}]{leaf\+Size }\end{DoxyParamCaption})}
+
+Detection of edges using a radius outlier removal filter. Beforehand the cloud is downsampled to guarantee a predictable point density. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em cloud} & -\/ cloud to detect edges in \\
+\hline
+\mbox{\texttt{ in}}  & {\em edge\+\_\+radius} & -\/ search radius used for the outlier removal filter \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Neighbors} & -\/ The maximum number of neighbors a point is allowed to have within the search radius to be considered as an edge \\
+\hline
+\mbox{\texttt{ out}}  & {\em leaf\+Size} & -\/ leaf\+Size for the downsampling \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_comparison_af111bdeb5135b4d518c5db4c23306db6}\label{class_comparison_af111bdeb5135b4d518c5db4c23306db6}} 
+\index{Comparison@{Comparison}!findFeature@{findFeature}}
+\index{findFeature@{findFeature}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{findFeature()}{findFeature()}}
+{\footnotesize\ttfamily bool Comparison\+::find\+Feature (\begin{DoxyParamCaption}\item[{pcl\+::\+S\+A\+C\+Segmentation\+From\+Normals$<$ PT, pcl\+::\+Normal $>$}]{seg,  }\item[{P\+T\+C\+::\+Ptr}]{remaining\+Cloud,  }\item[{P\+T\+C\+::\+Ptr}]{feature\+Cloud,  }\item[{pcl\+::\+Model\+Coefficients\+::\+Ptr}]{coefficients,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{normals,  }\item[{double}]{normal\+Weight,  }\item[{double}]{dist\+Thresh,  }\item[{int}]{max\+Iterations,  }\item[{int}]{min\+Inliers,  }\item[{bool}]{project\+Inliers,  }\item[{P\+T\+C\+::\+Ptr}]{projected\+Cloud = {\ttfamily PTC\+:\+:Ptr(new~PTC)},  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{feature\+Normals = {\ttfamily pcl\+:\+:PointCloud$<$~pcl\+:\+:Normal~$>$\+:\+:Ptr(new~pcl\+:\+:PointCloud$<$~pcl\+:\+:Normal~$>$)} }\end{DoxyParamCaption})}
+
+Detection of generic features. \begin{DoxyAttention}{Attention}
+\+: The project\+Inliers Filter contains bugs for cylinder in P\+CL 1.\+9.\+1. Thus the code was reimplemented manually. 
+\end{DoxyAttention}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em seg} & -\/ the segmentation object, which already has been initialized with the model type and all necessary constraints for the feature detection. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em remaining\+Cloud} & -\/ cloud used for the feature detection. The cloud without the feature is returned \\
+\hline
+\mbox{\texttt{ out}}  & {\em feature\+Cloud} & -\/ a pointcloud representing the feature found \\
+\hline
+\mbox{\texttt{ out}}  & {\em coefficients} & -\/ the coefficients of the feature found \\
+\hline
+\mbox{\texttt{ in}}  & {\em normals} & -\/ the surface normals of the cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em normal\+\_\+weight} & -\/ the weight of the deviation in the surface normals in comparison to the deviation in the position \\
+\hline
+\mbox{\texttt{ in}}  & {\em dist\+Thresh} & -\/ distance Threshold for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Iterations} & -\/ the number of iterations for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em min\+Inliers} & -\/ the minimum number of inliers a feature must have to be considered as valid \\
+\hline
+\mbox{\texttt{ in}}  & {\em project\+Inliers} & -\/ If true, all inliers are projected to the model \\
+\hline
+\mbox{\texttt{ out}}  & {\em projected\+Cloud} & -\/ the feature with all inliers projected to the found model \\
+\hline
+\mbox{\texttt{ out}}  & {\em feature\+Normals} & -\/ the normals of the feature found \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a cylinder within the thresholds was found, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_comparison_a701420c17d3cef796c43c3e0567dfd41}\label{class_comparison_a701420c17d3cef796c43c3e0567dfd41}} 
+\index{Comparison@{Comparison}!findLine@{findLine}}
+\index{findLine@{findLine}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{findLine()}{findLine()}}
+{\footnotesize\ttfamily bool Comparison\+::find\+Line (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{plane,  }\item[{P\+T\+C\+::\+Ptr}]{line,  }\item[{pcl\+::\+Model\+Coefficients\+::\+Ptr}]{coefficients,  }\item[{double}]{dist\+Thresh,  }\item[{int}]{max\+Iterations,  }\item[{double}]{min\+Inlier\+Ratio,  }\item[{Eigen\+::\+Vector3f $\ast$}]{axis = {\ttfamily new~Eigen\+:\+:Vector3f()},  }\item[{double}]{eps\+Axis = {\ttfamily 0},  }\item[{P\+T\+C\+::\+Ptr}]{ref = {\ttfamily PTC\+:\+:Ptr(new~PTC)},  }\item[{double}]{eps\+Ref = {\ttfamily 0},  }\item[{double}]{edge\+\_\+radius = {\ttfamily 0},  }\item[{int}]{max\+Neighbors = {\ttfamily 0},  }\item[{double}]{leaf\+Size = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Detection of lines. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em plane} & -\/ plane used for the line detection. The edges in the plane are returned. \\
+\hline
+\mbox{\texttt{ out}}  & {\em line} & -\/ a pointcloud representing the line found \\
+\hline
+\mbox{\texttt{ out}}  & {\em coefficients} & -\/ the coefficients of the line found \\
+\hline
+\mbox{\texttt{ in}}  & {\em dist\+Thresh} & -\/ distance Threshold for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Iterations} & -\/ the number of iterations for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em min\+Inlier\+Ratio} & -\/ the minimum number of inliers in relation to the maximum number of possible inliers a feature must have to be considered as valid \\
+\hline
+\mbox{\texttt{ in}}  & {\em axis} & -\/ the axis on which the line search is performed \\
+\hline
+\mbox{\texttt{ in}}  & {\em eps\+Axis} & -\/ the allowed angular deviation to the given axis in rad \\
+\hline
+\mbox{\texttt{ in}}  & {\em ref} & -\/ the cloud of the reference line \\
+\hline
+\mbox{\texttt{ in}}  & {\em eps\+Ref} & -\/ the allowed average distance to the reference line \\
+\hline
+\mbox{\texttt{ in}}  & {\em edge\+\_\+radius} & -\/ search radius for edge detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Neighbors} & -\/ The maximum number of neighbors a point is allowed to have within the search radius to be considered as an edge \\
+\hline
+\mbox{\texttt{ in}}  & {\em leaf\+Size} & -\/ leaf\+Size for the downsampling \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a line within the thresholds was found, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_comparison_a9deb87b67c75a86f59a402954e99d451}\label{class_comparison_a9deb87b67c75a86f59a402954e99d451}} 
+\index{Comparison@{Comparison}!findPlane@{findPlane}}
+\index{findPlane@{findPlane}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{findPlane()}{findPlane()}}
+{\footnotesize\ttfamily bool Comparison\+::find\+Plane (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud,  }\item[{P\+T\+C\+::\+Ptr}]{plane,  }\item[{pcl\+::\+Model\+Coefficients\+::\+Ptr}]{coefficients,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{normals,  }\item[{double}]{normal\+\_\+weight,  }\item[{double}]{dist\+Thresh,  }\item[{int}]{max\+Iterations,  }\item[{double}]{min\+Inlier\+Ratio,  }\item[{Eigen\+::\+Vector3f $\ast$}]{normal\+Axis = {\ttfamily new~Eigen\+:\+:Vector3f()},  }\item[{double}]{eps\+Angle = {\ttfamily 0},  }\item[{double}]{distance\+From\+Origin = {\ttfamily 0},  }\item[{double}]{eps\+Dist = {\ttfamily 0},  }\item[{P\+T\+C\+::\+Ptr}]{projected\+Plane = {\ttfamily PTC\+:\+:Ptr(new~PTC)} }\end{DoxyParamCaption})}
+
+Detection of planes. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em cloud} & -\/ cloud used for the line detection. The cloud without the plane is returned \\
+\hline
+\mbox{\texttt{ out}}  & {\em plane} & -\/ a pointcloud representing the plane found \\
+\hline
+\mbox{\texttt{ out}}  & {\em coefficients} & -\/ the coefficients of the plane found \\
+\hline
+\mbox{\texttt{ in}}  & {\em normals} & -\/ the surface normals of the cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em normal\+\_\+weight} & -\/ the weight of the deviation in the surface normals in comparison to the deviation in the position \\
+\hline
+\mbox{\texttt{ in}}  & {\em dist\+Thresh} & -\/ distance Threshold for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Iterations} & -\/ the number of iterations for the feature detection \\
+\hline
+\mbox{\texttt{ in}}  & {\em min\+Inlier\+Ratio} & -\/ the minimum number of inliers in relation to the maximum number of possible inliers a feature must have to be considered as valid \\
+\hline
+\mbox{\texttt{ in}}  & {\em normal\+Axis} & -\/ the expected normal axis of the plane \\
+\hline
+\mbox{\texttt{ in}}  & {\em eps\+Angle} & -\/ the allowed angular deviation to the given axis in rad \\
+\hline
+\mbox{\texttt{ in}}  & {\em distance\+From\+Origin} & -\/ the expected distance between the plane and the origin \\
+\hline
+\mbox{\texttt{ in}}  & {\em eps\+Dist} & -\/ the allowed deviation in distance \\
+\hline
+\mbox{\texttt{ out}}  & {\em projected\+Plane} & -\/ the plane with all inliers projected to the found model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a plane within the thresholds was found, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_comparison_a8bfb9290f15d8dc741f2c84f6b22a300}\label{class_comparison_a8bfb9290f15d8dc741f2c84f6b22a300}} 
+\index{Comparison@{Comparison}!hausdorff@{hausdorff}}
+\index{hausdorff@{hausdorff}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{hausdorff()}{hausdorff()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Comparison\+::hausdorff (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cam,  }\item[{P\+T\+C\+::\+Ptr}]{comp,  }\item[{float \&}]{hausdorff,  }\item[{float \&}]{avg\+\_\+dist }\end{DoxyParamCaption})}
+
+Hausdorff comparison without returning a colored hausdorff cloud. Keep in mind that outlier\+Deletion is set to false automatically. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cam} & -\/ measured cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em comp} & -\/ cloud of the component \\
+\hline
+\mbox{\texttt{ out}}  & {\em hausdorff} & -\/ hausdorff distance \\
+\hline
+\mbox{\texttt{ out}}  & {\em avg\+\_\+dist} & -\/ average distance of all points. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if comp contains defects, false otherwise true if comp contains defects, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_comparison_ad60800ecaf8171fa44e8c5fc93dff67e}\label{class_comparison_ad60800ecaf8171fa44e8c5fc93dff67e}} 
+\index{Comparison@{Comparison}!hausdorff@{hausdorff}}
+\index{hausdorff@{hausdorff}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{hausdorff()}{hausdorff()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Comparison\+::hausdorff (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cam,  }\item[{P\+T\+C\+::\+Ptr}]{comp,  }\item[{std\+::vector$<$ double $>$}]{thresholds,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Point\+X\+Y\+Z\+R\+GB $>$\+::Ptr}]{comp\+\_\+hausdorff,  }\item[{std\+::vector$<$ int $>$ \&}]{defects,  }\item[{float \&}]{hausdorff,  }\item[{float \&}]{avg\+\_\+dist,  }\item[{bool}]{outlier\+Deletion = {\ttfamily false},  }\item[{bool}]{no\+Cloud\+Needed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Hausdorff comparison and returning a colored hausdorff cloud. Source\+: Krumpek, O. et al.\+: Robot\+Scan. Projektbericht, Berlin, 2018. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cam} & -\/ measured cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em comp} & -\/ cloud of the component \\
+\hline
+\mbox{\texttt{ in}}  & {\em thresholds} & -\/ threshold vector to classify points (threshold\+\_\+outlier,threshold\+\_\+defect,threshold\+\_\+warning) \\
+\hline
+\mbox{\texttt{ out}}  & {\em comp\+\_\+hausdorff} & -\/ colored pointcloud to visualize defects \\
+\hline
+\mbox{\texttt{ out}}  & {\em hausdorff} & -\/ hausdorff distance \\
+\hline
+\mbox{\texttt{ out}}  & {\em avg\+\_\+dist} & -\/ average distance of all points \\
+\hline
+\mbox{\texttt{ in}}  & {\em outlier\+Deletion} & -\/ If true, delets all points with a distance greater than threshold\+\_\+outlier to the nearest neighbor in the other cloud. Those points are also not considered for hausdorff und avg\+\_\+dist calculation. \\
+\hline
+\mbox{\texttt{ in}}  & {\em no\+Cloud\+Needed} & -\/ If true, the part for creating the comp\+\_\+hausdorff cloud is skipped \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if comp contains defects, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_comparison_a443a1ebbede462e24570919ed2c42440}\label{class_comparison_a443a1ebbede462e24570919ed2c42440}} 
+\index{Comparison@{Comparison}!visualizeTolerances@{visualizeTolerances}}
+\index{visualizeTolerances@{visualizeTolerances}!Comparison@{Comparison}}
+\doxysubsubsection{\texorpdfstring{visualizeTolerances()}{visualizeTolerances()}}
+{\footnotesize\ttfamily void Comparison\+::visualize\+Tolerances (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cam,  }\item[{std\+::vector$<$ \mbox{\hyperlink{struct_dimension}{Dimension}} $>$}]{tolerances,  }\item[{std\+::string}]{name = {\ttfamily \char`\"{}Tolerances\char`\"{}} }\end{DoxyParamCaption})}
+
+Visualizes all tolerances. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cam} & -\/ the cloud on which the tolerance definition is based \\
+\hline
+\mbox{\texttt{ in}}  & {\em tolerances} & -\/ the vector of tolerances used \\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & -\/ name of the visualizer window \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Comparison.\+h\end{DoxyCompactItemize}

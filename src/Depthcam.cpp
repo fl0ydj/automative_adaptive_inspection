@@ -1,9 +1,21 @@
+/*
+Copyright (c) 2020
+TU Berlin, Institut für Werkzeugmaschinen und Fabrikbetrieb
+Fachgebiet Industrielle Automatisierungstechnik
+Authors: Justin Heinz
+All rights reserved.
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and /or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+DISCLAIMER: THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 #include "Depthcam.h"
 
-//Helper function
+// Helper function
 // License: Apache 2.0. See LICENSE file in root directory.
 // Copyright(c) 2017 Intel Corporation. All Rights Reserved.
-//https://github.com/IntelRealSense/librealsense/issues/1601
+//Source: https://github.com/IntelRealSense/librealsense/issues/1601
 std::tuple<uint8_t, uint8_t, uint8_t> get_texcolor(rs2::video_frame texture, rs2::texture_coordinate texcoords)
 {
 	const int w = texture.get_width(), h = texture.get_height();
@@ -14,7 +26,11 @@ std::tuple<uint8_t, uint8_t, uint8_t> get_texcolor(rs2::video_frame texture, rs2
 	return std::tuple<uint8_t, uint8_t, uint8_t>(
 		texture_data[idx], texture_data[idx + 1], texture_data[idx + 2]);
 }
-cv::Mat frame_to_mat(const rs2::frame& f) //QUELLE!!
+// Helper function
+// License: Apache 2.0. See LICENSE file in root directory.
+// Copyright(c) 2017 Intel Corporation. All Rights Reserved.
+//Source: https://github.com/IntelRealSense/librealsense/blob/master/wrappers/opencv/cv-helpers.hpp
+cv::Mat frame_to_mat(const rs2::frame& f)
 {
 	auto vf = f.as<rs2::video_frame>();
 	const int w = vf.get_width();
@@ -50,16 +66,16 @@ cv::Mat frame_to_mat(const rs2::frame& f) //QUELLE!!
 	{
 		return cv::Mat(cv::Size(w, h), CV_32FC1, (void*)f.get_data(), cv::Mat::AUTO_STEP);
 	}
-
 	throw std::runtime_error("Frame format is not supported yet!");
 }
 
 
-Depthcam::Depthcam(rs2::context ctx, rs2::device& dev,std::string preset,int disparity_shift,std::string debug) { //CONFIDENCE THRESHOLD??
+Depthcam::Depthcam(rs2::context ctx, rs2::device& dev,std::string preset,int disparity_shift,int laser_power,std::string debug) {
 	this->debug = stoi(debug);
-	this->ctx = ctx;
 	this->dev = dev;
-	pipe = rs2::pipeline(this->ctx);
+	pipe = rs2::pipeline(ctx);
+	rs2::config cfg;
+	rs2::pipeline_profile profile;
 	cfg.enable_device(getDeviceInfo());
 	cfg.enable_stream(RS2_STREAM_DEPTH, 1280, 720, RS2_FORMAT_Z16, 15);
 	cfg.enable_stream(RS2_STREAM_COLOR, 1280, 720, RS2_FORMAT_RGB8, 15);
@@ -67,17 +83,14 @@ Depthcam::Depthcam(rs2::context ctx, rs2::device& dev,std::string preset,int dis
 	rs2::depth_sensor depth_sensor = dev.first<rs2::depth_sensor>();
 	auto advanced_mode_dev = this->dev.as<rs400::advanced_mode>();
 	ApplyPreset(preset,advanced_mode_dev);
-	depth_sensor.set_option(RS2_OPTION_LASER_POWER, 30);
+	depth_sensor.set_option(RS2_OPTION_LASER_POWER, laser_power);
 	depth_sensor.set_option(RS2_OPTION_DEPTH_UNITS, 0.0001); //set length of one depth unit to 0.1 mm
 	depth_sensor.set_option(RS2_OPTION_ENABLE_AUTO_EXPOSURE, 1);
-	depth_sensor.set_option(RS2_OPTION_EMITTER_ON_OFF,0); // Disable laser 150
+	depth_sensor.set_option(RS2_OPTION_EMITTER_ON_OFF,0);
 	auto advance_mode_dev_group = advanced_mode_dev.get_depth_table();
 	advance_mode_dev_group.disparityShift = disparity_shift;
-	advance_mode_dev_group.depthClampMax = 5000; //von 20cm bis 40cm ungefähr
-	advance_mode_dev_group.depthClampMin = 1000;
 	advanced_mode_dev.set_depth_table(advance_mode_dev_group);
 	background.reset(new PTC);
-	scale = 1; // IntelRealSense hat Scale von Meter -> 1000 Millimeter
 	rs2_extrinsics extrin;
 	rs2_error* err;
 	auto stream = profile.get_stream(RS2_STREAM_DEPTH).as<rs2::video_stream_profile>();
@@ -88,13 +101,13 @@ Depthcam::Depthcam(rs2::context ctx, rs2::device& dev,std::string preset,int dis
 									extrin.rotation[1], extrin.rotation[4], extrin.rotation[7],
 										extrin.rotation[2], extrin.rotation[5], extrin.rotation[8];
 	ColorToDepth.block(0, 3, 3, 1) << extrin.translation[0], extrin.translation[1], extrin.translation[2];
-	auto intrinsics = stream_color.get_intrinsics(); // Calibration data
+	auto intrinsics = stream_color.get_intrinsics();
 	double discoeffs[5];
 	for (int i = 0; i < 5; i++)
 		discoeffs[i] = (double)intrinsics.coeffs[i];
-	IntrinsicMatrix = cv::Mat((cv::Mat_<double>(3, 3) << (double)intrinsics.fx, 0, (double)intrinsics.ppx, 0, (double)intrinsics.fy, (double)intrinsics.ppy, 0, 0, 1));
-	DistortionCoeff = cv::Vec<double, 5>(discoeffs);
-	markerLength = 0.014308 *2.0/3.0;// / 3.0;
+	IntrinsicMatrix <<intrinsics.fx, 0, intrinsics.ppx, 0, intrinsics.fy, intrinsics.ppy, 0, 0, 1;
+	DistortionCoeff = Eigen::Matrix<double, 5, 1>(discoeffs);
+	markerLength = 0.014308 *2.0/3.0;
 	SetupDictionary(14,14, 0.014308, markerLength,cv::aruco::DICT_4X4_100);
 }
 void Depthcam::stop() {
@@ -103,27 +116,26 @@ void Depthcam::stop() {
 void Depthcam::SetupDictionary(int width, int height, double squareLength, double markerLength, cv::aruco::PREDEFINED_DICTIONARY_NAME dict_name) {
 	dictionary=cv::Ptr<cv::aruco::Dictionary>(cv::aruco::getPredefinedDictionary(dict_name));
 	board=cv::aruco::CharucoBoard::create(width, height, squareLength, markerLength, dictionary);
-	/*board->objPoints*/
 }
 void Depthcam::ApplyPreset(std::string path,rs400::advanced_mode& advanced_mode_dev) {
-	std::ifstream file(path, std::ifstream::binary);//ShortRangePreset.json", std::ifstream::binary); //FILE NOT FOUND??
+	std::ifstream file(path, std::ifstream::binary);
 	std::string preset_json((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>()); //https://github.com/IntelRealSense/librealsense/issues/1021
 	advanced_mode_dev.load_json(preset_json);
 }
-void Depthcam::createPCLPointCloud() {
+void Depthcam::createPCLPointCloud(double spat_alpha,double spat_delta,double spat_magnitude,double temp_alpha, double temp_delta,int temp_persistency) {
 	cloud.reset(new PTC);
 	cloudRGB.reset(new pcl::PointCloud<pcl::PointXYZRGB>);
 	rs2::frameset fs = pipe.wait_for_frames();  //waits for frames to automatically delay the loop and not return instantly (see also poll_for_frames)
-	rs2::align align_to_depth(RS2_STREAM_DEPTH); //ersetzt die ColorToDepth Matrix
+	rs2::align align_to_depth(RS2_STREAM_DEPTH);
 	fs = align_to_depth.process(fs);
 	rs2::pointcloud realsense_cloud;
 	rs2::points points;
 	rs2::depth_frame depth = fs.get_depth_frame();
 	rs2::disparity_transform depth2disparity;
 	depth = depth2disparity.process(depth);
-	rs2::spatial_filter spat_filter(0.95,5,1,0);
+	rs2::spatial_filter spat_filter(spat_alpha, spat_delta,spat_magnitude,0);
 	depth = spat_filter.process(depth);
-	rs2::temporal_filter temp_filter(0.1, 10,7);   // reduce temporal noise -> but smoothes!
+	rs2::temporal_filter temp_filter(temp_alpha, temp_delta,temp_persistency); // reduce temporal noise -> but smoothes!
 	depth = temp_filter.process(depth);
 	rs2::disparity_transform disparity2depth(false);
 	depth = disparity2depth.process(depth);
@@ -150,34 +162,18 @@ void Depthcam::createPCLPointCloud() {
 			pointRGB.r = std::get<0>(current_color);
 			pointRGB.g = std::get<1>(current_color);
 			pointRGB.b = std::get<2>(current_color);
-			//pointRGB.r=tex_coords.
 			cloud->push_back(point);
 			cloudRGB->push_back(pointRGB);
 		}
 	}
-	pcl::transformPointCloud(*cloud, *cloud, ExtrinsicMatrix.inverse()*ColorToDepth);// *ColorToDepth); //FromMasterCam);////
-	pcl::transformPointCloud(*cloudRGB, *cloudRGB, ExtrinsicMatrix.inverse() * ColorToDepth);// *ColorToDepth);// FromMasterCam);////;*ColorToDepth
+	pcl::transformPointCloud(*cloud, *cloud, ExtrinsicMatrix.inverse()*ColorToDepth);
+	pcl::transformPointCloud(*cloudRGB, *cloudRGB, ExtrinsicMatrix.inverse() * ColorToDepth);
 }
-void Depthcam::saveBackground() {
-	background=cloud;
-	if (cloud->size() != 0)
-		pcl::io::savePCDFileASCII("background_" + getDeviceInfo() + ".pcd", *cloud);
+void Depthcam::determineFromMasterCam(Eigen::Matrix4f& MasterCam_ExtrinsicMatrix) {
+	FromMasterCam = MasterCam_ExtrinsicMatrix * ExtrinsicMatrix.inverse();
 }
-void Depthcam::loadBackground() {
-	PTC::Ptr cloud(new PTC);
-	pcl::io::loadPCDFile("background_" + getDeviceInfo() + ".pcd", *cloud);
-	background = cloud;
-}
-void Depthcam::determineFromMasterCam(Eigen::Matrix4f& MasterCam_ExtrinsicMatrix,Eigen::Matrix4f& MasterCam_ColorToDepth) {
-	FromMasterCam = MasterCam_ExtrinsicMatrix*ExtrinsicMatrix.inverse();//MasterCam_ColorToDepth*MasterCam_ExtrinsicMatrix*ExtrinsicMatrix.inverse()*ColorToDepth;
-	std::ofstream file("FromMasterCam_" + getDeviceInfo() + ".txt", std::ofstream::out | std::ofstream::trunc);
-	if (file.is_open()) {
-		file << FromMasterCam;
-	}
-	file.close();
-}
-void Depthcam::calibrateStatic(Eigen::Matrix4f& MasterCam_ExtrinsicMatrix, Eigen::Matrix4f& MasterCam_ColorToDepth) {
-	ExtrinsicMatrix = FromMasterCam.inverse()* MasterCam_ExtrinsicMatrix;// ColorToDepth* FromMasterCam.inverse()* MasterCam_ColorToDepth.inverse()* MasterCam_ExtrinsicMatrix;
+void Depthcam::calibrateStatic(Eigen::Matrix4f& MasterCam_ExtrinsicMatrix) {
+	ExtrinsicMatrix = FromMasterCam.inverse()* MasterCam_ExtrinsicMatrix;
 }
 void Depthcam::refineCalibration(Eigen::Matrix4f& error) {
 	ExtrinsicMatrix = ExtrinsicMatrix* error;
@@ -185,10 +181,8 @@ void Depthcam::refineCalibration(Eigen::Matrix4f& error) {
 std::string Depthcam::getDeviceInfo() {
 	return dev.get_info(RS2_CAMERA_INFO_SERIAL_NUMBER);
 }
-void Depthcam::removeBackground(PTC::Ptr cloud,bool RemoveUnderground) { //Quelle DOKU PCL Oct-tree //vlt hier noch clustering? -> vlt wirklich clustering was anderes klappt nicht so richtig
-	//FEHLERBEHANDLUNG WENN CLOUD LEER
-	//	Octree resolution - side length of octree voxels
-	pcl::PassThrough<PT> pass; //hier vlt eher boxfilter
+void Depthcam::removeBackground(PTC::Ptr cloud,bool RemoveUnderground) {
+	pcl::PassThrough<PT> pass;
 	pass.setInputCloud(cloud);
 	if (RemoveUnderground) {
 		pass.setFilterFieldName("z");
@@ -202,28 +196,21 @@ void Depthcam::removeBackground(PTC::Ptr cloud,bool RemoveUnderground) { //Quell
 	pass.setFilterLimits(-0, 0.200);
 	pass.filter(*cloud);
 }
-void Depthcam::postprocess(PTC::Ptr cloud) {
-	std::vector<int> indices;
-	pcl::removeNaNFromPointCloud(*cloud, *cloud, indices);
-	//irgendwo gesmoothed?
-	pcl::StatisticalOutlierRemoval<PT> sor;
-	sor.setInputCloud(cloud);
-	sor.setMeanK(1000);
-	sor.setStddevMulThresh(0.001); //more test to ensure robustness of this value
-	sor.filter(*cloud);
-}
-//https://docs.opencv.org/3.4.9/df/d4a/tutorial_charuco_detection.html
 bool Depthcam::detectChArUcoCorners(std::vector<cv::Point2f>& charucoCorners, std::vector<int>& charucoIds, bool Intrinsics)
 {
+	cv::Mat Intrin;
+	cv::Vec<double, 5> Dist;
+	cv::eigen2cv(IntrinsicMatrix, Intrin);
+	cv::eigen2cv(DistortionCoeff, Dist);
 	cv::Ptr<cv::aruco::DetectorParameters> params(new cv::aruco::DetectorParameters);
 	params->cornerRefinementMethod = cv::aruco::CORNER_REFINE_SUBPIX;
 	cv::aruco::detectMarkers(color_mat, dictionary, corners, ids,params);
 	if (ids.size() > 0) {
 		if (Intrinsics) {
 			std::vector<cv::Vec3d> corner_rvecs;
-			cv::aruco::estimatePoseSingleMarkers(corners, markerLength, IntrinsicMatrix, DistortionCoeff, corner_rvecs, corner_tvecs); //Estimate their pose for error assessment
+			cv::aruco::estimatePoseSingleMarkers(corners, markerLength, Intrin, Dist, corner_rvecs, corner_tvecs); //Estimate their pose for error assessment
 			// Refine them
-			cv::aruco::interpolateCornersCharuco(corners, ids, color_mat, board, charucoCorners, charucoIds, IntrinsicMatrix, DistortionCoeff);
+			cv::aruco::interpolateCornersCharuco(corners, ids, color_mat, board, charucoCorners, charucoIds, Intrin, Dist);
 		}else
 			cv::aruco::interpolateCornersCharuco(corners, ids, color_mat, board, charucoCorners, charucoIds);
 		if (charucoIds.size() <=4) {
@@ -235,7 +222,11 @@ bool Depthcam::detectChArUcoCorners(std::vector<cv::Point2f>& charucoCorners, st
 }
 bool Depthcam::estimateExtrinsics(std::vector<int> charucoIds, std::vector<cv::Point2f> charucoCorners) {
 	cv::Vec3f rvec, tvec;
-	bool valid= cv::aruco::estimatePoseCharucoBoard(charucoCorners, charucoIds, board, IntrinsicMatrix, DistortionCoeff, rvec, tvec);
+	cv::Mat Intrin;
+	cv::Vec<double, 5> Dist;
+	cv::eigen2cv(IntrinsicMatrix, Intrin);
+	cv::eigen2cv(DistortionCoeff, Dist);
+	bool valid= cv::aruco::estimatePoseCharucoBoard(charucoCorners, charucoIds, board, Intrin, Dist, rvec, tvec);
 	if(valid){
 		cv::Mat RotationMatrix;
 		cv::Rodrigues(rvec, RotationMatrix);
@@ -246,12 +237,12 @@ bool Depthcam::estimateExtrinsics(std::vector<int> charucoIds, std::vector<cv::P
 		ExtrinsicMatrix = Eigen::Matrix4f::Identity();
 		ExtrinsicMatrix.block(0, 0, 3, 3) = eigen_RotationMatrix;
 		ExtrinsicMatrix.block(0, 3, 3, 1) = eigen_Translation;
-		cv::aruco::drawAxis(color_mat, IntrinsicMatrix, DistortionCoeff, rvec, tvec, 0.1);
+		cv::aruco::drawAxis(color_mat, Intrin, Dist, rvec, tvec, 0.1);
 		cv::aruco::drawDetectedCornersCharuco(color_mat, charucoCorners, charucoIds);
 		//Error Assessment
 		double mean_x = 0, mean_y = 0;
 		std::vector<cv::Point2f> points;
-		cv::projectPoints(board->chessboardCorners, rvec, tvec, IntrinsicMatrix, DistortionCoeff, points); //-> das hier noch als fehlerbetrachtung
+		cv::projectPoints(board->chessboardCorners, rvec, tvec, Intrin, Dist, points);
 		for(cv::Point2f point:points)
 			cv::circle(color_mat, point, 5, cv::Scalar(0, 0, 255));
 		int index = 0;
@@ -262,9 +253,10 @@ bool Depthcam::estimateExtrinsics(std::vector<int> charucoIds, std::vector<cv::P
 		}
 		double rms = sqrt(1.0 / index * (mean_x + mean_y));
 		ReprojectionErrors.push_back(rms);
-		cout<< "The reprojection error for "<<getDeviceInfo() <<" is: " << rms<<"\n";
+		DetectedMarkers.push_back(charucoIds.size());
+		cout<< "For "<<getDeviceInfo() <<" the number of detect markers is "<<charucoIds.size()<<" and their reprojection error is " << rms<<" pixels.\n";
 		if(debug>0)
-			cv::imshow("[DEBUG] "+getDeviceInfo(), color_mat);
+			cv::imshow("[DEBUG] Calibration of "+getDeviceInfo(), color_mat);
 		while (true&&debug==2) {
 			char key = (char)cv::waitKey(100);
 			if (key == 32)
@@ -277,17 +269,16 @@ bool Depthcam::estimateExtrinsics(std::vector<int> charucoIds, std::vector<cv::P
 	}
 }
 bool Depthcam::calibrateIntrinsics() {
-
 	std::vector<std::vector<cv::Point2f>> Corners;
 	std::vector<std::vector<int>> Ids;
 	std::vector<cv::Vec3f> rvecs, tvecs;
-	PCL_INFO("Starting intrinsic calibration.\n");
-	for (int i = 0; i < 25; i++) {
+	cout<<"Starting intrinsic calibration.\n";
+	for (int i = 0; i < 10; i++) {
 		rs2::frameset fs;
-		PCL_INFO("Find a new position of the charuco board. Press SPACE to continue.\n");
+		cout<<"Find a new position of the charuco board. Press SPACE to continue.\n";
 		while (true) {
 			fs = pipe.wait_for_frames();
-			color_mat = frame_to_mat(fs.get_color_frame()).clone(); //Wir bestimmen hier die 
+			color_mat = frame_to_mat(fs.get_color_frame()).clone();
 			cv::imshow("Intrinsic: RGB", color_mat);
 			char key = (char)cv::waitKey(100);
 			if (key == 32)
@@ -303,24 +294,17 @@ bool Depthcam::calibrateIntrinsics() {
 			Ids.push_back(charucoIds);
 		}
 		else {
-			PCL_WARN("Position not accepted. No charuco corners have been found. Try again.");
+			PCL_WARN("Position not accepted. Not enough charuco corners have been found. Try again.");
 			i--;
 			continue;
 		}
 	}
-	double rms = cv::aruco::calibrateCameraCharuco(Corners, Ids, board, color_mat.size(), IntrinsicMatrix, DistortionCoeff);
-	rms = cv::aruco::calibrateCameraCharuco(Corners, Ids, board, color_mat.size(), IntrinsicMatrix, DistortionCoeff);
-	cout << rms;
-	std::ofstream file("IntrinsicMatrix_" + getDeviceInfo() + ".txt", std::ofstream::out | std::ofstream::trunc);
-	if (file.is_open()) {
-		file << IntrinsicMatrix;
-	}
-	file.close();
-	file = std::ofstream("DistortionCoeffs_" + getDeviceInfo() + ".txt", std::ofstream::out | std::ofstream::trunc);
-	if (file.is_open()) {
-		file << DistortionCoeff;
-	}
-	file.close();
+	cv::Mat intrin;
+	cv::Vec<double, 5> dist;
+	double rms = cv::aruco::calibrateCameraCharuco(Corners, Ids, board, color_mat.size(), intrin, dist);
+	cv::cv2eigen(dist, DistortionCoeff);
+	cv::cv2eigen(intrin, IntrinsicMatrix);
+	cout << "The intrinsic calibration lead to an error of " <<rms<<"pixels.\n";
 	return true;
 }
 bool Depthcam::calibrateExtrinsics() {
@@ -336,55 +320,7 @@ bool Depthcam::calibrateExtrinsics() {
 	}
 	return false; //skip this turntable position for this camera
 }
-void Depthcam::loadFromMasterCam() {
-	ifstream infile;
-	infile.open("FromMasterCam_" + getDeviceInfo() + ".txt");
-	int rows = 0;
-	while (!infile.eof())
-	{
-		std::string line;
-		getline(infile, line);
-		int cols = 0;
-		std::stringstream stream(line);
-		while (!stream.eof())
-			stream >> FromMasterCam.coeffRef(rows, cols++);
-		rows++;
-	}
-	infile.close();
-}
-void Depthcam::loadIntrinsics() {
-	ifstream infile;
-	infile.open("IntrinsicMatrix_" + getDeviceInfo() + ".txt");
-	int rows = 0;
-	Eigen::Matrix3f tmp;
-	while (!infile.eof())
-	{
-		std::string line;
-		getline(infile, line);
-		int cols = 0;
-		std::stringstream stream(line);
-		while (!stream.eof())
-			stream >> tmp.coeffRef(rows, cols++);
-		rows++;
-	}
-	cv::eigen2cv(tmp, IntrinsicMatrix);
-	infile.close();
-	infile.open("DistortionCoeffs_" + getDeviceInfo() + ".txt");
-	while (!infile.eof())
-	{
-		int cols = 0;
-		std::string line;
-		getline(infile, line);
-		std::stringstream stream(line);
-		while (!stream.eof())
-			stream >> DistortionCoeff[cols++];
-	}
-}
-cv::Mat Depthcam::getMat() {
-	cv::Mat image=color_mat.clone();
-	return image;
-}
-void Depthcam::calibrationError(std::vector<cv::Vec3d> master_tvecs,std::vector<int> master_ids,Eigen::Matrix4f& master_extrinsics) {
+void Depthcam::transformationError(std::vector<cv::Vec3d> master_tvecs,std::vector<int> master_ids,Eigen::Matrix4f& master_extrinsics) {
 	int count = 0;
 	int markersInBothPictures = 0;
 	double mean_x = 0;
@@ -413,44 +349,7 @@ void Depthcam::calibrationError(std::vector<cv::Vec3d> master_tvecs,std::vector<
 			markersInBothPictures++;
 		}
 	}
-	//Visual Visualizer("Calibration Error", cloud_slave, cloud_master);
-	//Visualizer.processOutput();
-
-	double rms = sqrt(1.0 / markersInBothPictures * (mean_x + mean_y+mean_z));
-	cout << "The RMS reprojection error is: " << rms << "\n";
-	//cv::hconcat(IntrinsicMatrix, cv::Mat((cv::Mat_<double>(3, 1) << 0,0,0)), IntrinsicMatrix);
-	//for (cv::Mat slaveMat : slaveMats) {
-	//	// Projection 2D -> 3D matrix
-	//	cv::Mat to3D = (cv::Mat_<double>(4, 3) <<
-	//		1, 0, -slaveMat.cols / 2.0,
-	//		0, 1, -slaveMat.rows / 2.0,
-	//		0, 0, 0,
-	//		0, 0, 1);
-	//	cv::Mat M;
-	//	cv::eigen2cv(Eigen::Matrix4d(fromMasterCams.at(count).inverse().cast<double>()), M);
-	//	cv::Mat to2D = (cv::Mat_<double>(3, 4) <<
-
-	//		M.at<double>(2,3), 0, slaveMat.cols / 2.0, 0,
-
-	//		0, M.at<double>(2, 3), slaveMat.rows / 2.0, 0,
-
-	//		0, 0, 1, 0);
-	//	cv::Mat transfo = to2D * M * to3D;
-	//	cv::Mat slaveMatout;
-	//	cv::warpPerspective(slaveMat, slaveMatout, transfo, slaveMat.size(),cv::INTER_LANCZOS4);
-	//	count++;
-	//	cv::imshow("out", slaveMatout);
-	//	//1.  -> we have poses of the markers and their ids
-	//	//2. we transform them using Extrinsic1,FromMainCam,Extrinsic2
-	//	//3. draw them in master frame
-	//	//3. RMS Error with the ids
-	//	while (true) {
-	//		char key = (char)cv::waitKey(100);
-	//		if (key == 32)
-	//			break;
-	//	}
-	//}
+	if (debug > 0) { Visual Visualizer("[DEBUG] Calibration Error of "+getDeviceInfo(), cloud_slave, cloud_master); if (debug == 2)	Visualizer.processOutput(); }
+	double rms = sqrt(1.0 / markersInBothPictures *(mean_x + mean_y+mean_z));
+	cout << "The transformation error of the markers of "<<getDeviceInfo()<< " to the master cam is " << rms << "m.\n";
 }
-//void Depthcam::offsetError() {
-//	//HIER IRGENDWIE WIE GROß der offset zwischen den scans ist -> wir wissen es muss ne ecke sein -> auch das hier mit Hausdorff analysieren -> das in letztem Kapitel
-//}

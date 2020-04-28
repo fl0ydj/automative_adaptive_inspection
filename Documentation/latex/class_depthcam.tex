@@ -1,0 +1,407 @@
+\hypertarget{class_depthcam}{}\doxysection{Depthcam Class Reference}
+\label{class_depthcam}\index{Depthcam@{Depthcam}}
+
+
+Real Sense Wrapper class.  
+
+
+
+
+{\ttfamily \#include $<$Depthcam.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_depthcam_ae9da7e91c4822840b53dbfab5e729939}{Depthcam}} (rs2\+::context ctx, rs2\+::device \&\mbox{\hyperlink{class_depthcam_aa30735491d596d166ea490244573d62e}{dev}}, std\+::string preset, int disparity\+\_\+shift, int laser\+\_\+power, std\+::string debug)
+\item 
+void \mbox{\hyperlink{class_depthcam_a2c7aa102864d6c8330bcb402fc4f8bb9}{stop}} ()
+\item 
+void \mbox{\hyperlink{class_depthcam_ac0a7541e150e49f1b178446e3da5341e}{Apply\+Preset}} (std\+::string path, rs400\+::advanced\+\_\+mode \&advanced\+\_\+mode\+\_\+dev)
+\item 
+void \mbox{\hyperlink{class_depthcam_a54e1ea9d6a97fa9ba1ee0f014dc8d011}{Setup\+Dictionary}} (int width, int height, double square\+Length, double marker\+Length, cv\+::aruco\+::\+P\+R\+E\+D\+E\+F\+I\+N\+E\+D\+\_\+\+D\+I\+C\+T\+I\+O\+N\+A\+R\+Y\+\_\+\+N\+A\+ME dict\+\_\+name)
+\item 
+void \mbox{\hyperlink{class_depthcam_a972d056a3b72e7a752c57cea74326d60}{create\+P\+C\+L\+Point\+Cloud}} (double spat\+\_\+alpha, double spat\+\_\+delta, double spat\+\_\+magnitude, double temp\+\_\+alpha, double temp\+\_\+delta, int temp\+\_\+persistency)
+\item 
+void \mbox{\hyperlink{class_depthcam_a14a575ebaf1ee2bb011d646f34805cc0}{remove\+Background}} (P\+T\+C\+::\+Ptr \mbox{\hyperlink{class_depthcam_aa667702a76a8f02e25a2347243cabc1f}{cloud}}, bool Remove\+Underground)
+\item 
+bool \mbox{\hyperlink{class_depthcam_abed99862a1f35f8f14b61bd45c04eed4}{detect\+Ch\+Ar\+Uco\+Corners}} (std\+::vector$<$ cv\+::\+Point2f $>$ \&charuco\+Corners, std\+::vector$<$ int $>$ \&charuco\+Ids, bool Intrinsics)
+\item 
+bool \mbox{\hyperlink{class_depthcam_a3990ebbb034e18fe8740708b10b6ea66}{estimate\+Extrinsics}} (std\+::vector$<$ int $>$ charuco\+Ids, std\+::vector$<$ cv\+::\+Point2f $>$ charuco\+Corners)
+\item 
+bool \mbox{\hyperlink{class_depthcam_a72df54ec5ccdf235d62a1556a678ab40}{calibrate\+Intrinsics}} ()
+\item 
+bool \mbox{\hyperlink{class_depthcam_ad6fafda68f25aef9fe1c5a2128685275}{calibrate\+Extrinsics}} ()
+\item 
+void \mbox{\hyperlink{class_depthcam_a7830f122b2afecfcb4afc0f48d1a936d}{determine\+From\+Master\+Cam}} (Eigen\+::\+Matrix4f \&Master\+Cam\+\_\+\+Extrinsic\+Matrix)
+\item 
+void \mbox{\hyperlink{class_depthcam_af287484c8d5e8c4cfe5ede8a7af65b32}{calibrate\+Static}} (Eigen\+::\+Matrix4f \&Master\+Cam\+\_\+\+Extrinsic\+Matrix)
+\item 
+void \mbox{\hyperlink{class_depthcam_abc03355ca3806c23a382c912939e341c}{refine\+Calibration}} (Eigen\+::\+Matrix4f \&error)
+\item 
+std\+::string \mbox{\hyperlink{class_depthcam_a5493b2d43430fa889504e9ea654a59c7}{get\+Device\+Info}} ()
+\item 
+void \mbox{\hyperlink{class_depthcam_a951bc8a798ba7c5b2a18245fe93776d3}{transformation\+Error}} (std\+::vector$<$ cv\+::\+Vec3d $>$ master\+\_\+tvecs, std\+::vector$<$ int $>$ master\+\_\+ids, Eigen\+::\+Matrix4f \&master\+\_\+extrinsics)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW cv\+::\+Mat \mbox{\hyperlink{class_depthcam_a17b8cf4fb7429f11e244ba735a548528}{color\+\_\+mat}}
+\item 
+P\+T\+C\+::\+Ptr \mbox{\hyperlink{class_depthcam_aa667702a76a8f02e25a2347243cabc1f}{cloud}}
+\item 
+pcl\+::\+Point\+Cloud$<$ pcl\+::\+Point\+X\+Y\+Z\+R\+GB $>$\+::Ptr \mbox{\hyperlink{class_depthcam_ad5f38d8767fa48288f17aab1e27f5ed8}{cloud\+R\+GB}}
+\item 
+rs2\+::device \mbox{\hyperlink{class_depthcam_aa30735491d596d166ea490244573d62e}{dev}}
+\item 
+Eigen\+::\+Matrix4f \mbox{\hyperlink{class_depthcam_a6404053ea95fe820ceb90f7ea541fc71}{Color\+To\+Depth}}
+\item 
+Eigen\+::\+Matrix4f \mbox{\hyperlink{class_depthcam_a44f0361d02de75128d40769918e4810b}{Extrinsic\+Matrix}}
+\item 
+Eigen\+::\+Matrix3d \mbox{\hyperlink{class_depthcam_a7ead9c9a7939f3f1db44214cb9db25f1}{Intrinsic\+Matrix}}
+\item 
+Eigen\+::\+Matrix$<$ double, 5, 1 $>$ \mbox{\hyperlink{class_depthcam_aa0d73031bf1e6b30f58391f6c0e01ba6}{Distortion\+Coeff}}
+\item 
+Eigen\+::\+Matrix4f \mbox{\hyperlink{class_depthcam_a1d22c9f3d091f3ed3b304aa7a16cc96a}{From\+Master\+Cam}}
+\item 
+P\+T\+C\+::\+Ptr \mbox{\hyperlink{class_depthcam_a9c4f8f5895c697f89ac26e11695acb40}{background}}
+\item 
+cv\+::\+Ptr$<$ cv\+::aruco\+::\+Dictionary $>$ \mbox{\hyperlink{class_depthcam_ae48aea003fa9edf2e417d715ad9c717d}{dictionary}} = new cv\+::aruco\+::\+Dictionary
+\item 
+cv\+::\+Ptr$<$ cv\+::aruco\+::\+Charuco\+Board $>$ \mbox{\hyperlink{class_depthcam_a3635ed7b900f8b42d89d9362e53f133a}{board}} = new cv\+::aruco\+::\+Charuco\+Board
+\item 
+std\+::vector$<$ cv\+::\+Vec3d $>$ \mbox{\hyperlink{class_depthcam_a6debb59e3c513962bebcbe68880f015f}{corner\+\_\+tvecs}}
+\item 
+std\+::vector$<$ std\+::vector$<$ cv\+::\+Point2f $>$ $>$ \mbox{\hyperlink{class_depthcam_adece6f3ee625ad8317efe0e659ab6174}{corners}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_depthcam_ae83aead40dd5737249359f7ed86eebd7}{ids}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{class_depthcam_aa7de7690ddc9805caddab6be65e88c17}{Reprojection\+Errors}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_depthcam_a4df84c556e6de9c4cabe5fc90f0145d1}{Detected\+Markers}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Real Sense Wrapper class. 
+
+This class allows to create pointclouds, remove the background in a pointclouds, perform the R\+GB intrinsic and extrinsic calibration. Sources\+: \href{https://docs.opencv.org/3.4.9/df/d4a/tutorial_charuco_detection.html}{\texttt{ https\+://docs.\+opencv.\+org/3.\+4.\+9/df/d4a/tutorial\+\_\+charuco\+\_\+detection.\+html}}, \href{https://github.com/IntelRealSense/librealsense/issues/1601}{\texttt{ https\+://github.\+com/\+Intel\+Real\+Sense/librealsense/issues/1601}}, \href{https://github.com/IntelRealSense/librealsense/issues/1021}{\texttt{ https\+://github.\+com/\+Intel\+Real\+Sense/librealsense/issues/1021}} \begin{DoxyAuthor}{Author}
+Justin Heinz 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_depthcam_ae9da7e91c4822840b53dbfab5e729939}\label{class_depthcam_ae9da7e91c4822840b53dbfab5e729939}} 
+\index{Depthcam@{Depthcam}!Depthcam@{Depthcam}}
+\index{Depthcam@{Depthcam}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{Depthcam()}{Depthcam()}}
+{\footnotesize\ttfamily Depthcam\+::\+Depthcam (\begin{DoxyParamCaption}\item[{rs2\+::context}]{ctx,  }\item[{rs2\+::device \&}]{dev,  }\item[{std\+::string}]{preset,  }\item[{int}]{disparity\+\_\+shift,  }\item[{int}]{laser\+\_\+power,  }\item[{std\+::string}]{debug }\end{DoxyParamCaption})}
+
+Create the depthcam object, which provides the functions to interact with the realsense library. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & -\/ context of the real sense camera \\
+\hline
+\mbox{\texttt{ in}}  & {\em dev} & -\/ device of the real sense camera \\
+\hline
+\mbox{\texttt{ in}}  & {\em preset} & -\/ preset which should be used for recording \\
+\hline
+\mbox{\texttt{ in}}  & {\em disparity\+\_\+shift} & -\/ the disparity shift to use \\
+\hline
+\mbox{\texttt{ in}}  & {\em laser\+\_\+power} & -\/ the value for the laser power \\
+\hline
+\mbox{\texttt{ in}}  & {\em debug} & -\/ Debug level(0 -\/ none,1 -\/ some,2 -\/ all) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_depthcam_ac0a7541e150e49f1b178446e3da5341e}\label{class_depthcam_ac0a7541e150e49f1b178446e3da5341e}} 
+\index{Depthcam@{Depthcam}!ApplyPreset@{ApplyPreset}}
+\index{ApplyPreset@{ApplyPreset}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{ApplyPreset()}{ApplyPreset()}}
+{\footnotesize\ttfamily void Depthcam\+::\+Apply\+Preset (\begin{DoxyParamCaption}\item[{std\+::string}]{path,  }\item[{rs400\+::advanced\+\_\+mode \&}]{advanced\+\_\+mode\+\_\+dev }\end{DoxyParamCaption})}
+
+Apply a preset to the real sense camera 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em path} & -\/ path to the preset json file \\
+\hline
+\mbox{\texttt{ in}}  & {\em advanced\+\_\+mode\+\_\+dev} & -\/ pointer to the device in advanced mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_depthcam_ad6fafda68f25aef9fe1c5a2128685275}\label{class_depthcam_ad6fafda68f25aef9fe1c5a2128685275}} 
+\index{Depthcam@{Depthcam}!calibrateExtrinsics@{calibrateExtrinsics}}
+\index{calibrateExtrinsics@{calibrateExtrinsics}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{calibrateExtrinsics()}{calibrateExtrinsics()}}
+{\footnotesize\ttfamily bool Depthcam\+::calibrate\+Extrinsics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Performs the extrinsic calibration between the color stream and the world coordinate system using a charuco board. \begin{DoxyReturn}{Returns}
+true when successful, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_depthcam_a72df54ec5ccdf235d62a1556a678ab40}\label{class_depthcam_a72df54ec5ccdf235d62a1556a678ab40}} 
+\index{Depthcam@{Depthcam}!calibrateIntrinsics@{calibrateIntrinsics}}
+\index{calibrateIntrinsics@{calibrateIntrinsics}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{calibrateIntrinsics()}{calibrateIntrinsics()}}
+{\footnotesize\ttfamily bool Depthcam\+::calibrate\+Intrinsics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Performs the R\+GB intrinsic calibration using 10 pictures of a charuco board. \begin{DoxyReturn}{Returns}
+true when successful, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_depthcam_af287484c8d5e8c4cfe5ede8a7af65b32}\label{class_depthcam_af287484c8d5e8c4cfe5ede8a7af65b32}} 
+\index{Depthcam@{Depthcam}!calibrateStatic@{calibrateStatic}}
+\index{calibrateStatic@{calibrateStatic}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{calibrateStatic()}{calibrateStatic()}}
+{\footnotesize\ttfamily void Depthcam\+::calibrate\+Static (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix4f \&}]{Master\+Cam\+\_\+\+Extrinsic\+Matrix }\end{DoxyParamCaption})}
+
+Determine the extrinsic matrix based on the cam-\/to-\/cam transformation. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Master\+Cam\+\_\+\+Extrinsic\+Matrix} & -\/ extrinsic matrix of the master camera \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_depthcam_a972d056a3b72e7a752c57cea74326d60}\label{class_depthcam_a972d056a3b72e7a752c57cea74326d60}} 
+\index{Depthcam@{Depthcam}!createPCLPointCloud@{createPCLPointCloud}}
+\index{createPCLPointCloud@{createPCLPointCloud}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{createPCLPointCloud()}{createPCLPointCloud()}}
+{\footnotesize\ttfamily void Depthcam\+::create\+P\+C\+L\+Point\+Cloud (\begin{DoxyParamCaption}\item[{double}]{spat\+\_\+alpha,  }\item[{double}]{spat\+\_\+delta,  }\item[{double}]{spat\+\_\+magnitude,  }\item[{double}]{temp\+\_\+alpha,  }\item[{double}]{temp\+\_\+delta,  }\item[{int}]{temp\+\_\+persistency }\end{DoxyParamCaption})}
+
+Wait for frames of the camera, than create the librealsense point cloud and convert it to the P\+CL format. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em spat\+\_\+alpha} & -\/ alpha parameter for the spatial filter \\
+\hline
+\mbox{\texttt{ in}}  & {\em spat\+\_\+delta} & -\/ delta parameter for the spatial filter \\
+\hline
+\mbox{\texttt{ in}}  & {\em spat\+\_\+magnitude} & -\/ magnitude parameter for the spatial filter \\
+\hline
+\mbox{\texttt{ in}}  & {\em temp\+\_\+alpha} & -\/ alpha parameter for the temporal filter \\
+\hline
+\mbox{\texttt{ in}}  & {\em temp\+\_\+delta} & -\/ delta parameter for the temporal filter \\
+\hline
+\mbox{\texttt{ in}}  & {\em temp\+\_\+persistency} & -\/ persistency parameter for the temporal filter \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_depthcam_abed99862a1f35f8f14b61bd45c04eed4}\label{class_depthcam_abed99862a1f35f8f14b61bd45c04eed4}} 
+\index{Depthcam@{Depthcam}!detectChArUcoCorners@{detectChArUcoCorners}}
+\index{detectChArUcoCorners@{detectChArUcoCorners}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{detectChArUcoCorners()}{detectChArUcoCorners()}}
+{\footnotesize\ttfamily bool Depthcam\+::detect\+Ch\+Ar\+Uco\+Corners (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point2f $>$ \&}]{charuco\+Corners,  }\item[{std\+::vector$<$ int $>$ \&}]{charuco\+Ids,  }\item[{bool}]{Intrinsics }\end{DoxyParamCaption})}
+
+Detect charuco corners. Source\+: \href{https://docs.opencv.org/3.4.9/df/d4a/tutorial_charuco_detection.html}{\texttt{ https\+://docs.\+opencv.\+org/3.\+4.\+9/df/d4a/tutorial\+\_\+charuco\+\_\+detection.\+html}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em charuco\+Corners} & -\/ the 2D positions of the detected corners \\
+\hline
+\mbox{\texttt{ out}}  & {\em charuco\+Ids} & -\/ the I\+Ds of the detected corners \\
+\hline
+\mbox{\texttt{ in}}  & {\em Intrinsics} & -\/ When true, uses the intrinsic matrix to derive the translation vectors to the individual corners \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when some corners could be detected, false if not enough corners have been found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_depthcam_a7830f122b2afecfcb4afc0f48d1a936d}\label{class_depthcam_a7830f122b2afecfcb4afc0f48d1a936d}} 
+\index{Depthcam@{Depthcam}!determineFromMasterCam@{determineFromMasterCam}}
+\index{determineFromMasterCam@{determineFromMasterCam}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{determineFromMasterCam()}{determineFromMasterCam()}}
+{\footnotesize\ttfamily void Depthcam\+::determine\+From\+Master\+Cam (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix4f \&}]{Master\+Cam\+\_\+\+Extrinsic\+Matrix }\end{DoxyParamCaption})}
+
+Determine the cam-\/to-\/cam transformation based on its own extrinsic matrix. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Master\+Cam\+\_\+\+Extrinsic\+Matrix} & -\/ extrinsic matrix of the master camera \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_depthcam_a3990ebbb034e18fe8740708b10b6ea66}\label{class_depthcam_a3990ebbb034e18fe8740708b10b6ea66}} 
+\index{Depthcam@{Depthcam}!estimateExtrinsics@{estimateExtrinsics}}
+\index{estimateExtrinsics@{estimateExtrinsics}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{estimateExtrinsics()}{estimateExtrinsics()}}
+{\footnotesize\ttfamily bool Depthcam\+::estimate\+Extrinsics (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{charuco\+Ids,  }\item[{std\+::vector$<$ cv\+::\+Point2f $>$}]{charuco\+Corners }\end{DoxyParamCaption})}
+
+Uses a set of charuco corners to derive the extrinsic matrix. Source\+: \href{https://docs.opencv.org/3.4.9/df/d4a/tutorial_charuco_detection.html}{\texttt{ https\+://docs.\+opencv.\+org/3.\+4.\+9/df/d4a/tutorial\+\_\+charuco\+\_\+detection.\+html}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em charuco\+Ids} & -\/ the I\+Ds of the detected corners \\
+\hline
+\mbox{\texttt{ out}}  & {\em charuco\+Corners} & -\/ the 2D positions of the detected corners \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when the extrinsic matrix could be determined, false when not enough markers could be used 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_depthcam_a5493b2d43430fa889504e9ea654a59c7}\label{class_depthcam_a5493b2d43430fa889504e9ea654a59c7}} 
+\index{Depthcam@{Depthcam}!getDeviceInfo@{getDeviceInfo}}
+\index{getDeviceInfo@{getDeviceInfo}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{getDeviceInfo()}{getDeviceInfo()}}
+{\footnotesize\ttfamily std\+::string Depthcam\+::get\+Device\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns the device info representing the realsense camera. \begin{DoxyReturn}{Returns}
+device number 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_depthcam_abc03355ca3806c23a382c912939e341c}\label{class_depthcam_abc03355ca3806c23a382c912939e341c}} 
+\index{Depthcam@{Depthcam}!refineCalibration@{refineCalibration}}
+\index{refineCalibration@{refineCalibration}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{refineCalibration()}{refineCalibration()}}
+{\footnotesize\ttfamily void Depthcam\+::refine\+Calibration (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix4f \&}]{error }\end{DoxyParamCaption})}
+
+Refines the extrinsic calibration. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error} & -\/ matrix representing the calibration error \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_depthcam_a14a575ebaf1ee2bb011d646f34805cc0}\label{class_depthcam_a14a575ebaf1ee2bb011d646f34805cc0}} 
+\index{Depthcam@{Depthcam}!removeBackground@{removeBackground}}
+\index{removeBackground@{removeBackground}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{removeBackground()}{removeBackground()}}
+{\footnotesize\ttfamily void Depthcam\+::remove\+Background (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud,  }\item[{bool}]{Remove\+Underground }\end{DoxyParamCaption})}
+
+Remove everything which is not on the charuco board. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em cloud} & -\/ the cloud whose background should be removed \\
+\hline
+\mbox{\texttt{ in}}  & {\em Remove\+Underground} & -\/ When true, also remove the points of the charuco board itself \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_depthcam_a54e1ea9d6a97fa9ba1ee0f014dc8d011}\label{class_depthcam_a54e1ea9d6a97fa9ba1ee0f014dc8d011}} 
+\index{Depthcam@{Depthcam}!SetupDictionary@{SetupDictionary}}
+\index{SetupDictionary@{SetupDictionary}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{SetupDictionary()}{SetupDictionary()}}
+{\footnotesize\ttfamily void Depthcam\+::\+Setup\+Dictionary (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height,  }\item[{double}]{square\+Length,  }\item[{double}]{marker\+Length,  }\item[{cv\+::aruco\+::\+P\+R\+E\+D\+E\+F\+I\+N\+E\+D\+\_\+\+D\+I\+C\+T\+I\+O\+N\+A\+R\+Y\+\_\+\+N\+A\+ME}]{dict\+\_\+name }\end{DoxyParamCaption})}
+
+Setup the dictionary of the charuco board. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em width} & -\/ number of markers in horizontal direction \\
+\hline
+\mbox{\texttt{ in}}  & {\em height} & -\/ number of markers in vertical direction \\
+\hline
+\mbox{\texttt{ in}}  & {\em square\+Lenght} & -\/ length of one square \\
+\hline
+\mbox{\texttt{ in}}  & {\em marker\+Lenght} & -\/ length of one marker \\
+\hline
+\mbox{\texttt{ in}}  & {\em dict\+\_\+name} & -\/ type of dictionary to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_depthcam_a2c7aa102864d6c8330bcb402fc4f8bb9}\label{class_depthcam_a2c7aa102864d6c8330bcb402fc4f8bb9}} 
+\index{Depthcam@{Depthcam}!stop@{stop}}
+\index{stop@{stop}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void Depthcam\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops the pipeline. \mbox{\Hypertarget{class_depthcam_a951bc8a798ba7c5b2a18245fe93776d3}\label{class_depthcam_a951bc8a798ba7c5b2a18245fe93776d3}} 
+\index{Depthcam@{Depthcam}!transformationError@{transformationError}}
+\index{transformationError@{transformationError}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{transformationError()}{transformationError()}}
+{\footnotesize\ttfamily void Depthcam\+::transformation\+Error (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Vec3d $>$}]{master\+\_\+tvecs,  }\item[{std\+::vector$<$ int $>$}]{master\+\_\+ids,  }\item[{Eigen\+::\+Matrix4f \&}]{master\+\_\+extrinsics }\end{DoxyParamCaption})}
+
+Calculates the error of the cam-\/to-\/cam calibration. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em master\+\_\+tvecs} & -\/ translational vector of all corners detected by the master cam \\
+\hline
+\mbox{\texttt{ in}}  & {\em master\+\_\+ids} & -\/ ids of all corners detected by the master cam \\
+\hline
+\mbox{\texttt{ in}}  & {\em master\+\_\+extrinsics} & -\/ extrinsic matrix of the master camera \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_depthcam_a9c4f8f5895c697f89ac26e11695acb40}\label{class_depthcam_a9c4f8f5895c697f89ac26e11695acb40}} 
+\index{Depthcam@{Depthcam}!background@{background}}
+\index{background@{background}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{background}{background}}
+{\footnotesize\ttfamily P\+T\+C\+::\+Ptr Depthcam\+::background}
+
+Point cloud of the background (charuco board) \mbox{\Hypertarget{class_depthcam_a3635ed7b900f8b42d89d9362e53f133a}\label{class_depthcam_a3635ed7b900f8b42d89d9362e53f133a}} 
+\index{Depthcam@{Depthcam}!board@{board}}
+\index{board@{board}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{board}{board}}
+{\footnotesize\ttfamily cv\+::\+Ptr$<$cv\+::aruco\+::\+Charuco\+Board$>$ Depthcam\+::board = new cv\+::aruco\+::\+Charuco\+Board}
+
+The charuco board used \mbox{\Hypertarget{class_depthcam_aa667702a76a8f02e25a2347243cabc1f}\label{class_depthcam_aa667702a76a8f02e25a2347243cabc1f}} 
+\index{Depthcam@{Depthcam}!cloud@{cloud}}
+\index{cloud@{cloud}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{cloud}{cloud}}
+{\footnotesize\ttfamily P\+T\+C\+::\+Ptr Depthcam\+::cloud}
+
+Last recorded point cloud \mbox{\Hypertarget{class_depthcam_ad5f38d8767fa48288f17aab1e27f5ed8}\label{class_depthcam_ad5f38d8767fa48288f17aab1e27f5ed8}} 
+\index{Depthcam@{Depthcam}!cloudRGB@{cloudRGB}}
+\index{cloudRGB@{cloudRGB}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{cloudRGB}{cloudRGB}}
+{\footnotesize\ttfamily pcl\+::\+Point\+Cloud$<$pcl\+::\+Point\+X\+Y\+Z\+R\+GB$>$\+::Ptr Depthcam\+::cloud\+R\+GB}
+
+Last recorded colored point cloud \mbox{\Hypertarget{class_depthcam_a17b8cf4fb7429f11e244ba735a548528}\label{class_depthcam_a17b8cf4fb7429f11e244ba735a548528}} 
+\index{Depthcam@{Depthcam}!color\_mat@{color\_mat}}
+\index{color\_mat@{color\_mat}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{color\_mat}{color\_mat}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW cv\+::\+Mat Depthcam\+::color\+\_\+mat}
+
+Last recorded color matrix. \mbox{\Hypertarget{class_depthcam_a6404053ea95fe820ceb90f7ea541fc71}\label{class_depthcam_a6404053ea95fe820ceb90f7ea541fc71}} 
+\index{Depthcam@{Depthcam}!ColorToDepth@{ColorToDepth}}
+\index{ColorToDepth@{ColorToDepth}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{ColorToDepth}{ColorToDepth}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix4f Depthcam\+::\+Color\+To\+Depth}
+
+Extrinsic Matrix between the color stream and the depth stream. \mbox{\Hypertarget{class_depthcam_a6debb59e3c513962bebcbe68880f015f}\label{class_depthcam_a6debb59e3c513962bebcbe68880f015f}} 
+\index{Depthcam@{Depthcam}!corner\_tvecs@{corner\_tvecs}}
+\index{corner\_tvecs@{corner\_tvecs}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{corner\_tvecs}{corner\_tvecs}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Vec3d$>$ Depthcam\+::corner\+\_\+tvecs}
+
+The translation vectors from the color stream to the individual corners of the charuco board \mbox{\Hypertarget{class_depthcam_adece6f3ee625ad8317efe0e659ab6174}\label{class_depthcam_adece6f3ee625ad8317efe0e659ab6174}} 
+\index{Depthcam@{Depthcam}!corners@{corners}}
+\index{corners@{corners}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{corners}{corners}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$cv\+::\+Point2f$>$ $>$ Depthcam\+::corners}
+
+The 2D points of the corners detected \mbox{\Hypertarget{class_depthcam_a4df84c556e6de9c4cabe5fc90f0145d1}\label{class_depthcam_a4df84c556e6de9c4cabe5fc90f0145d1}} 
+\index{Depthcam@{Depthcam}!DetectedMarkers@{DetectedMarkers}}
+\index{DetectedMarkers@{DetectedMarkers}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{DetectedMarkers}{DetectedMarkers}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Depthcam\+::\+Detected\+Markers}
+
+Vector of numbers of detected markers \mbox{\Hypertarget{class_depthcam_aa30735491d596d166ea490244573d62e}\label{class_depthcam_aa30735491d596d166ea490244573d62e}} 
+\index{Depthcam@{Depthcam}!dev@{dev}}
+\index{dev@{dev}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{dev}{dev}}
+{\footnotesize\ttfamily rs2\+::device Depthcam\+::dev}
+
+Reference to the realsense device \mbox{\Hypertarget{class_depthcam_ae48aea003fa9edf2e417d715ad9c717d}\label{class_depthcam_ae48aea003fa9edf2e417d715ad9c717d}} 
+\index{Depthcam@{Depthcam}!dictionary@{dictionary}}
+\index{dictionary@{dictionary}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{dictionary}{dictionary}}
+{\footnotesize\ttfamily cv\+::\+Ptr$<$cv\+::aruco\+::\+Dictionary$>$ Depthcam\+::dictionary = new cv\+::aruco\+::\+Dictionary}
+
+Dictionary used for the charuco board \mbox{\Hypertarget{class_depthcam_aa0d73031bf1e6b30f58391f6c0e01ba6}\label{class_depthcam_aa0d73031bf1e6b30f58391f6c0e01ba6}} 
+\index{Depthcam@{Depthcam}!DistortionCoeff@{DistortionCoeff}}
+\index{DistortionCoeff@{DistortionCoeff}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{DistortionCoeff}{DistortionCoeff}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double,5,1$>$ Depthcam\+::\+Distortion\+Coeff}
+
+Distortion coefficients of the color stream \mbox{\Hypertarget{class_depthcam_a44f0361d02de75128d40769918e4810b}\label{class_depthcam_a44f0361d02de75128d40769918e4810b}} 
+\index{Depthcam@{Depthcam}!ExtrinsicMatrix@{ExtrinsicMatrix}}
+\index{ExtrinsicMatrix@{ExtrinsicMatrix}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{ExtrinsicMatrix}{ExtrinsicMatrix}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix4f Depthcam\+::\+Extrinsic\+Matrix}
+
+Extrinsic Matrix between the color stream and the world coordinate \mbox{\Hypertarget{class_depthcam_a1d22c9f3d091f3ed3b304aa7a16cc96a}\label{class_depthcam_a1d22c9f3d091f3ed3b304aa7a16cc96a}} 
+\index{Depthcam@{Depthcam}!FromMasterCam@{FromMasterCam}}
+\index{FromMasterCam@{FromMasterCam}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{FromMasterCam}{FromMasterCam}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix4f Depthcam\+::\+From\+Master\+Cam}
+
+Transformation between the color stream and the color stream of the master camera \mbox{\Hypertarget{class_depthcam_ae83aead40dd5737249359f7ed86eebd7}\label{class_depthcam_ae83aead40dd5737249359f7ed86eebd7}} 
+\index{Depthcam@{Depthcam}!ids@{ids}}
+\index{ids@{ids}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{ids}{ids}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Depthcam\+::ids}
+
+The I\+Ds of the corners detected \mbox{\Hypertarget{class_depthcam_a7ead9c9a7939f3f1db44214cb9db25f1}\label{class_depthcam_a7ead9c9a7939f3f1db44214cb9db25f1}} 
+\index{Depthcam@{Depthcam}!IntrinsicMatrix@{IntrinsicMatrix}}
+\index{IntrinsicMatrix@{IntrinsicMatrix}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{IntrinsicMatrix}{IntrinsicMatrix}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix3d Depthcam\+::\+Intrinsic\+Matrix}
+
+Intrinsic Matrix of the color stream \mbox{\Hypertarget{class_depthcam_aa7de7690ddc9805caddab6be65e88c17}\label{class_depthcam_aa7de7690ddc9805caddab6be65e88c17}} 
+\index{Depthcam@{Depthcam}!ReprojectionErrors@{ReprojectionErrors}}
+\index{ReprojectionErrors@{ReprojectionErrors}!Depthcam@{Depthcam}}
+\doxysubsubsection{\texorpdfstring{ReprojectionErrors}{ReprojectionErrors}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ Depthcam\+::\+Reprojection\+Errors}
+
+Vector of reprojection errors 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Depthcam.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,214 @@
+\hypertarget{class_file_i_o}{}\doxysection{File\+IO Class Reference}
+\label{class_file_i_o}\index{FileIO@{FileIO}}
+
+
+Class for file input and output for Clouds, Tolerance Definitions, Matrices and the Results format.  
+
+
+
+
+{\ttfamily \#include $<$File\+I\+O.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_file_i_o_a8b0d602c3461181e12c05f655dea5018}{File\+IO}} ()
+\item 
+void \mbox{\hyperlink{class_file_i_o_a4e84bfd387a9a05f0c49b664d6b9f69c}{load\+Parameters}} (std\+::map$<$ std\+::string, std\+::string $>$ \&parameters)
+\item 
+void \mbox{\hyperlink{class_file_i_o_af1833319190773a5b720de6529ab4aa7}{save\+Parameters}} (std\+::map$<$ std\+::string, std\+::string $>$ \&parameters)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{class_file_i_o_a72030451032636bcd4d8503a4d37f551}{load\+Cloud}} (std\+::string text, typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr cloud, std\+::string def=\char`\"{}\char`\"{}, bool scaling\+Required=false)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{class_file_i_o_acf54a2f537744f7552b4b9467489b077}{save\+Cloud}} (std\+::string path, typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr cloud)
+\item 
+bool \mbox{\hyperlink{class_file_i_o_a042a52bdc2957a71f2effa12abef0bd7}{load\+Tolerances}} (std\+::string path=\char`\"{}\char`\"{})
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{class_file_i_o_ae020a73a79671e0d25d0fcf571372b08}{query\+Scaling}} (std\+::string path, typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr cloud=pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr(new pcl\+::\+Point\+Cloud$<$ T $>$))
+\item 
+void \mbox{\hyperlink{class_file_i_o_a7519dd1ad517a5b78e8119061aff6f7b}{save\+Results}} ()
+\item 
+bool \mbox{\hyperlink{class_file_i_o_a91fff74ed34aca7b56885a737f90e3f2}{load\+Results}} (std\+::string path)
+\item 
+{\footnotesize template$<$typename scalar , int rows, int cols$>$ }\\void \mbox{\hyperlink{class_file_i_o_ac0b1f1607180ebba9d8f98f132e15f8a}{save\+Matrix}} (std\+::string path, typename Eigen\+::\+Matrix$<$ scalar, rows, cols $>$ \&mat)
+\item 
+{\footnotesize template$<$typename scalar , int rows, int cols$>$ }\\bool \mbox{\hyperlink{class_file_i_o_ac72f3b38241006019f95a382a11ba514}{load\+Matrix}} (std\+::string path, Eigen\+::\+Matrix$<$ scalar, rows, cols $>$ \&mat)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW std\+::vector$<$ \mbox{\hyperlink{struct_dimension}{Dimension}} $>$ \mbox{\hyperlink{class_file_i_o_a874f45932ef86e9adcce7b82b9cc3499}{tolerances}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for file input and output for Clouds, Tolerance Definitions, Matrices and the Results format. 
+
+\begin{DoxyAuthor}{Author}
+Justin Heinz, Siemens P\+LM Software 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_file_i_o_a8b0d602c3461181e12c05f655dea5018}\label{class_file_i_o_a8b0d602c3461181e12c05f655dea5018}} 
+\index{FileIO@{FileIO}!FileIO@{FileIO}}
+\index{FileIO@{FileIO}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{FileIO()}{FileIO()}}
+{\footnotesize\ttfamily File\+I\+O\+::\+File\+IO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_file_i_o_a72030451032636bcd4d8503a4d37f551}\label{class_file_i_o_a72030451032636bcd4d8503a4d37f551}} 
+\index{FileIO@{FileIO}!loadCloud@{loadCloud}}
+\index{loadCloud@{loadCloud}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{loadCloud()}{loadCloud()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool File\+I\+O\+::load\+Cloud (\begin{DoxyParamCaption}\item[{std\+::string}]{text,  }\item[{typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr}]{cloud,  }\item[{std\+::string}]{def = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{scaling\+Required = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Query a user for a path to a pointcloud and load it. Supported file formats\+: .pcd, .stl, .ply, .txt, .jt For .txt files, load\+Results(path) is called. For .jt files, load\+Tolerances(path) is called. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em text} & -\/ Text to show to the user to ask for a path. \\
+\hline
+\mbox{\texttt{ out}}  & {\em cloud} & -\/ the cloud loaded as a response \\
+\hline
+\mbox{\texttt{ in}}  & {\em def} & -\/ When set, it is the default path name to use, when the user types \char`\"{}default\char`\"{}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em scaling\+Required} & -\/ When set, query\+Scaling is called. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when the cloud was loaded successfully, false when an error occured 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_i_o_ac72f3b38241006019f95a382a11ba514}\label{class_file_i_o_ac72f3b38241006019f95a382a11ba514}} 
+\index{FileIO@{FileIO}!loadMatrix@{loadMatrix}}
+\index{loadMatrix@{loadMatrix}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{loadMatrix()}{loadMatrix()}}
+{\footnotesize\ttfamily template$<$typename scalar , int rows, int cols$>$ \\
+bool File\+I\+O\+::load\+Matrix (\begin{DoxyParamCaption}\item[{std\+::string}]{path,  }\item[{Eigen\+::\+Matrix$<$ scalar, rows, cols $>$ \&}]{mat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Load an Eigen Matrix from a text file. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em path} & -\/ Where to load the matrix from \\
+\hline
+\mbox{\texttt{ out}}  & {\em mat} & -\/ Loaded matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when successful, false when an error occured 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_i_o_a4e84bfd387a9a05f0c49b664d6b9f69c}\label{class_file_i_o_a4e84bfd387a9a05f0c49b664d6b9f69c}} 
+\index{FileIO@{FileIO}!loadParameters@{loadParameters}}
+\index{loadParameters@{loadParameters}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{loadParameters()}{loadParameters()}}
+{\footnotesize\ttfamily void File\+I\+O\+::load\+Parameters (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::string $>$ \&}]{parameters }\end{DoxyParamCaption})}
+
+Reads in parameters.\+txt. All parameters are stored using the structure \char`\"{}\+Key\+:\+Value\textbackslash{}n\char`\"{}. If the file does not exist, saveparameters(parameters) is called. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em parameters} & -\/ the map of parameters \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_file_i_o_a91fff74ed34aca7b56885a737f90e3f2}\label{class_file_i_o_a91fff74ed34aca7b56885a737f90e3f2}} 
+\index{FileIO@{FileIO}!loadResults@{loadResults}}
+\index{loadResults@{loadResults}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{loadResults()}{loadResults()}}
+{\footnotesize\ttfamily bool File\+I\+O\+::load\+Results (\begin{DoxyParamCaption}\item[{std\+::string}]{path }\end{DoxyParamCaption})}
+
+Load in the results file. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em path} & -\/ The path to the results file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when successful, false when an error occured or if the results file is in an invalid format 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_i_o_a042a52bdc2957a71f2effa12abef0bd7}\label{class_file_i_o_a042a52bdc2957a71f2effa12abef0bd7}} 
+\index{FileIO@{FileIO}!loadTolerances@{loadTolerances}}
+\index{loadTolerances@{loadTolerances}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{loadTolerances()}{loadTolerances()}}
+{\footnotesize\ttfamily bool File\+I\+O\+::load\+Tolerances (\begin{DoxyParamCaption}\item[{std\+::string}]{path = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+Load tolerances for the tolerance comparison. At the end \mbox{\hyperlink{class_file_i_o_ae020a73a79671e0d25d0fcf571372b08}{query\+Scaling()}} is called. Source\+: Parts of this procedure have been copied from an example by Siemens P\+LM. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em path} & -\/ Path to load the tolerance definition from. When empty, the user is queried to enter a path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when the tolerance definition was loaded successfully, false when an error occured 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_i_o_ae020a73a79671e0d25d0fcf571372b08}\label{class_file_i_o_ae020a73a79671e0d25d0fcf571372b08}} 
+\index{FileIO@{FileIO}!queryScaling@{queryScaling}}
+\index{queryScaling@{queryScaling}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{queryScaling()}{queryScaling()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool File\+I\+O\+::query\+Scaling (\begin{DoxyParamCaption}\item[{std\+::string}]{path,  }\item[{typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr}]{cloud = {\ttfamily pcl\+:\+:PointCloud$<$~T~$>$\+:\+:Ptr(new~pcl\+:\+:PointCloud$<$~T~$>$)} }\end{DoxyParamCaption})}
+
+Query the user to enter the unit which is used for the cloud. The cloud is scaled accordingly. Supported\+: mikro,mm,cm,dm,m. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em path} & -\/ The path to the cloud. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em cloud} & -\/ The pointer to the scaled cloud. If empty, tolerance is scaled instead. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when successful, false when an error occured or an invalid unit was entered. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_i_o_acf54a2f537744f7552b4b9467489b077}\label{class_file_i_o_acf54a2f537744f7552b4b9467489b077}} 
+\index{FileIO@{FileIO}!saveCloud@{saveCloud}}
+\index{saveCloud@{saveCloud}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{saveCloud()}{saveCloud()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void File\+I\+O\+::save\+Cloud (\begin{DoxyParamCaption}\item[{std\+::string}]{path,  }\item[{typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr}]{cloud }\end{DoxyParamCaption})}
+
+Save a pointcloud in the .pcd format. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em path} & -\/ Path to the location where the cloud should be saved. \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ the cloud to be saved. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_file_i_o_ac0b1f1607180ebba9d8f98f132e15f8a}\label{class_file_i_o_ac0b1f1607180ebba9d8f98f132e15f8a}} 
+\index{FileIO@{FileIO}!saveMatrix@{saveMatrix}}
+\index{saveMatrix@{saveMatrix}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{saveMatrix()}{saveMatrix()}}
+{\footnotesize\ttfamily template$<$typename scalar , int rows, int cols$>$ \\
+void File\+I\+O\+::save\+Matrix (\begin{DoxyParamCaption}\item[{std\+::string}]{path,  }\item[{typename Eigen\+::\+Matrix$<$ scalar, rows, cols $>$ \&}]{mat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Save an Eigen Matrix with a specified format in a text file. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em path} & -\/ Where to save the text file \\
+\hline
+\mbox{\texttt{ in}}  & {\em mat} & -\/ Matrix to save \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_file_i_o_af1833319190773a5b720de6529ab4aa7}\label{class_file_i_o_af1833319190773a5b720de6529ab4aa7}} 
+\index{FileIO@{FileIO}!saveParameters@{saveParameters}}
+\index{saveParameters@{saveParameters}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{saveParameters()}{saveParameters()}}
+{\footnotesize\ttfamily void File\+I\+O\+::save\+Parameters (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::string $>$ \&}]{parameters }\end{DoxyParamCaption})}
+
+Writes parameters to parameters.\+txt. All parameters are stored using the structure \char`\"{}\+Key\+:\+Value\textbackslash{}n\char`\"{}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em parameters} & -\/ the map of parameters \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_file_i_o_a7519dd1ad517a5b78e8119061aff6f7b}\label{class_file_i_o_a7519dd1ad517a5b78e8119061aff6f7b}} 
+\index{FileIO@{FileIO}!saveResults@{saveResults}}
+\index{saveResults@{saveResults}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{saveResults()}{saveResults()}}
+{\footnotesize\ttfamily void File\+I\+O\+::save\+Results (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Save the tolerances in Results.\+txt. Format\+: id\+:textposition\+:value\+:measured\+:ok 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_file_i_o_a874f45932ef86e9adcce7b82b9cc3499}\label{class_file_i_o_a874f45932ef86e9adcce7b82b9cc3499}} 
+\index{FileIO@{FileIO}!tolerances@{tolerances}}
+\index{tolerances@{tolerances}!FileIO@{FileIO}}
+\doxysubsubsection{\texorpdfstring{tolerances}{tolerances}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW std\+::vector$<$\mbox{\hyperlink{struct_dimension}{Dimension}}$>$ File\+I\+O\+::tolerances}
+
+Vector of type \mbox{\hyperlink{struct_dimension}{Dimension}} to store the tolerances. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/File\+I\+O.\+h\end{DoxyCompactItemize}

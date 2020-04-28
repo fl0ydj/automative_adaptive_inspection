@@ -1,0 +1,199 @@
+\hypertarget{class_registration}{}\doxysection{Registration Class Reference}
+\label{class_registration}\index{Registration@{Registration}}
+
+
+Class for the subproblem of the registration.  
+
+
+
+
+{\ttfamily \#include $<$Registration.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW \mbox{\hyperlink{class_registration_a2862feb00f4e684619a0c2cf13eefabd}{Registration}} (std\+::string debug)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{class_registration_a588abebd0098592c82490169fd9c7ef9}{downsample}} (typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr cloud, typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr cloud\+\_\+sparse, double \&leaf\+Size, int max\+\_\+number\+Of\+Points=std\+::numeric\+\_\+limits$<$ int $>$\+::max())
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{class_registration_a40b63b163a10733d8a808c9e83fa9d43}{postprocess}} (typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr cloud, int meanK, double thresh)
+\item 
+pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr \mbox{\hyperlink{class_registration_a72296f80470cb2d3c4f32a23f98b72d2}{get\+Normals}} (P\+T\+C\+::\+Ptr cloud, double search\+Radius)
+\item 
+pcl\+::\+Point\+Cloud$<$ pcl\+::\+F\+P\+F\+H\+Signature33 $>$\+::Ptr \mbox{\hyperlink{class_registration_ad28167eba0633e49a88cb66f07426519}{get\+Local\+Features}} (P\+T\+C\+::\+Ptr cloud, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr cloud\+\_\+normals, double search\+Radius)
+\item 
+bool \mbox{\hyperlink{class_registration_ad236d0fcfe964d96833f231da00aa95b}{find\+Initial\+Guess}} (P\+T\+C\+::\+Ptr cloud\+\_\+source, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr source\+\_\+normals, P\+T\+C\+::\+Ptr cloud\+\_\+target, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr target\+\_\+normals, double \&score, Eigen\+::\+Matrix4f \&transformation, double min\+Sample\+Distance, double correspondence\+Distance, int max\+Iterations, double search\+Radius)
+\item 
+void \mbox{\hyperlink{class_registration_adbecce174d41e7c4b47be7446549053d}{demean}} (P\+T\+C\+::\+Ptr cloud\+Centroid, P\+T\+C\+::\+Ptr cloud\+Demean, bool inverse=false)
+\item 
+bool \mbox{\hyperlink{class_registration_a12266c8b6766ea956657c56579685493}{cloud\+Registration}} (P\+T\+C\+::\+Ptr cloud\+\_\+source, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr source\+\_\+normals, P\+T\+C\+::\+Ptr cloud\+\_\+target, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr target\+\_\+normals, double \&score, Eigen\+::\+Matrix4f \&transformation, double correspondence\+Distance, int max\+Iterations, double max\+Fitness\+Score=0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for the subproblem of the registration. 
+
+This class allows postprocessing functionalities, estimation of normals, downsampling and performing the registration using S\+AC Initial Alignment or I\+CP. Source\+: \href{http://pointclouds.org/documentation/tutorials/template_alignment.php}{\texttt{ http\+://pointclouds.\+org/documentation/tutorials/template\+\_\+alignment.\+php}} \begin{DoxyAuthor}{Author}
+Justin Heinz 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_registration_a2862feb00f4e684619a0c2cf13eefabd}\label{class_registration_a2862feb00f4e684619a0c2cf13eefabd}} 
+\index{Registration@{Registration}!Registration@{Registration}}
+\index{Registration@{Registration}!Registration@{Registration}}
+\doxysubsubsection{\texorpdfstring{Registration()}{Registration()}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW Registration\+::\+Registration (\begin{DoxyParamCaption}\item[{std\+::string}]{debug }\end{DoxyParamCaption})}
+
+Constructor of the registration class. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em debug} & -\/ how many debug info should be displayed (0 -\/ none,1 -\/ some,2 -\/ all) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_registration_a12266c8b6766ea956657c56579685493}\label{class_registration_a12266c8b6766ea956657c56579685493}} 
+\index{Registration@{Registration}!cloudRegistration@{cloudRegistration}}
+\index{cloudRegistration@{cloudRegistration}!Registration@{Registration}}
+\doxysubsubsection{\texorpdfstring{cloudRegistration()}{cloudRegistration()}}
+{\footnotesize\ttfamily bool Registration\+::cloud\+Registration (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud\+\_\+source,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{source\+\_\+normals,  }\item[{P\+T\+C\+::\+Ptr}]{cloud\+\_\+target,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{target\+\_\+normals,  }\item[{double \&}]{score,  }\item[{Eigen\+::\+Matrix4f \&}]{transformation,  }\item[{double}]{correspondence\+Distance,  }\item[{int}]{max\+Iterations,  }\item[{double}]{max\+Fitness\+Score = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Performs the pose refinement using I\+CP. Good initial pose estimation needed. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em cloud\+\_\+source} & -\/ cloud which has to be aligned \\
+\hline
+\mbox{\texttt{ in}}  & {\em source\+\_\+normals} & -\/ normals of the source cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloud\+\_\+target} & -\/ target cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em target\+\_\+normals} & -\/ normals of the target cloud \\
+\hline
+\mbox{\texttt{ out}}  & {\em score} & -\/ fitness score of the registration \\
+\hline
+\mbox{\texttt{ out}}  & {\em transformation} & -\/ estimated transformation to align clouds \\
+\hline
+\mbox{\texttt{ in}}  & {\em correspondence\+Distance} & -\/ maximum allowed initial distance between two features of the clouds \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Iterations} & -\/ number of iterations used \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Fitness\+Score} & -\/ When greater than zero, this parameter is used as a second termination criterium. When the fitness score between two consecutive steps is below this value, I\+CP is considered to have converged. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_registration_adbecce174d41e7c4b47be7446549053d}\label{class_registration_adbecce174d41e7c4b47be7446549053d}} 
+\index{Registration@{Registration}!demean@{demean}}
+\index{demean@{demean}!Registration@{Registration}}
+\doxysubsubsection{\texorpdfstring{demean()}{demean()}}
+{\footnotesize\ttfamily void Registration\+::demean (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud\+Centroid,  }\item[{P\+T\+C\+::\+Ptr}]{cloud\+Demean,  }\item[{bool}]{inverse = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Calculate the centroid of a cloud and use it to demean a second cloud. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cloud\+Centroid} & -\/ cloud used for the centroid calculation \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em cloud\+Demean} & -\/ cloud to demean \\
+\hline
+\mbox{\texttt{ in}}  & {\em inverse} & -\/ If true, the calculated centroid is inverted. Assuming an already demeaned cloud\+Demean, this flag can be used to move cloud\+Demean to the centroid of cloud\+Centroid. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_registration_a588abebd0098592c82490169fd9c7ef9}\label{class_registration_a588abebd0098592c82490169fd9c7ef9}} 
+\index{Registration@{Registration}!downsample@{downsample}}
+\index{downsample@{downsample}!Registration@{Registration}}
+\doxysubsubsection{\texorpdfstring{downsample()}{downsample()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Registration\+::downsample (\begin{DoxyParamCaption}\item[{typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr}]{cloud,  }\item[{typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr}]{cloud\+\_\+sparse,  }\item[{double \&}]{leaf\+Size,  }\item[{int}]{max\+\_\+number\+Of\+Points = {\ttfamily std\+:\+:numeric\+\_\+limits$<$~int~$>$\+:\+:max()} }\end{DoxyParamCaption})}
+
+Uses a voxelgrid to downsample a given point cloud. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ the cloud to be downsampled \\
+\hline
+\mbox{\texttt{ out}}  & {\em cloud\+\_\+sparse} & -\/ the downsampled cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em leaf\+Size} & -\/ Leafsize to use for the voxel grid \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+\_\+number\+Of\+Points} & -\/ maximum number of points in the cloud after downsampling. When the number is higher, the leafsize is increased and the downsampling is performed again. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_registration_ad236d0fcfe964d96833f231da00aa95b}\label{class_registration_ad236d0fcfe964d96833f231da00aa95b}} 
+\index{Registration@{Registration}!findInitialGuess@{findInitialGuess}}
+\index{findInitialGuess@{findInitialGuess}!Registration@{Registration}}
+\doxysubsubsection{\texorpdfstring{findInitialGuess()}{findInitialGuess()}}
+{\footnotesize\ttfamily bool Registration\+::find\+Initial\+Guess (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud\+\_\+source,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{source\+\_\+normals,  }\item[{P\+T\+C\+::\+Ptr}]{cloud\+\_\+target,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{target\+\_\+normals,  }\item[{double \&}]{score,  }\item[{Eigen\+::\+Matrix4f \&}]{transformation,  }\item[{double}]{min\+Sample\+Distance,  }\item[{double}]{correspondence\+Distance,  }\item[{int}]{max\+Iterations,  }\item[{double}]{search\+Radius }\end{DoxyParamCaption})}
+
+Find the initial 6D pose of the component in the cam cloud pointer using F\+P\+FH. Source\+: \href{http://pointclouds.org/documentation/tutorials/template_alignment.php}{\texttt{ http\+://pointclouds.\+org/documentation/tutorials/template\+\_\+alignment.\+php}} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em cloud\+\_\+source} & -\/ cloud which has to be aligned \\
+\hline
+\mbox{\texttt{ in}}  & {\em source\+\_\+normals} & -\/ normals of the source cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloud\+\_\+target} & -\/ target cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em target\+\_\+normals} & -\/ normals of the target cloud \\
+\hline
+\mbox{\texttt{ out}}  & {\em score} & -\/ fitness score of the registration \\
+\hline
+\mbox{\texttt{ out}}  & {\em transformation} & -\/ estimated transformation to align clouds \\
+\hline
+\mbox{\texttt{ in}}  & {\em min\+Sample\+Distance} & -\/ minimum distance between chosen samples \\
+\hline
+\mbox{\texttt{ in}}  & {\em correspondence\+Distance} & -\/ maximum allowed initial distance between two features of the clouds \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+Iterations} & -\/ number of iterations used \\
+\hline
+\mbox{\texttt{ in}}  & {\em search\+Radius} & -\/ used for the F\+P\+FH estimation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_registration_ad28167eba0633e49a88cb66f07426519}\label{class_registration_ad28167eba0633e49a88cb66f07426519}} 
+\index{Registration@{Registration}!getLocalFeatures@{getLocalFeatures}}
+\index{getLocalFeatures@{getLocalFeatures}!Registration@{Registration}}
+\doxysubsubsection{\texorpdfstring{getLocalFeatures()}{getLocalFeatures()}}
+{\footnotesize\ttfamily pcl\+::\+Point\+Cloud$<$pcl\+::\+F\+P\+F\+H\+Signature33$>$\+::Ptr Registration\+::get\+Local\+Features (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{cloud\+\_\+normals,  }\item[{double}]{search\+Radius }\end{DoxyParamCaption})}
+
+Esimate the fast point feature histograms for a cloud 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ cloud used for F\+P\+FH estimation \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloud\+\_\+normals} & -\/ the normals of the cloud \\
+\hline
+\mbox{\texttt{ in}}  & {\em search\+Radius} & -\/ the radius used for F\+P\+FH estimation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the estimated F\+P\+F\+Hs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_registration_a72296f80470cb2d3c4f32a23f98b72d2}\label{class_registration_a72296f80470cb2d3c4f32a23f98b72d2}} 
+\index{Registration@{Registration}!getNormals@{getNormals}}
+\index{getNormals@{getNormals}!Registration@{Registration}}
+\doxysubsubsection{\texorpdfstring{getNormals()}{getNormals()}}
+{\footnotesize\ttfamily pcl\+::\+Point\+Cloud$<$pcl\+::\+Normal$>$\+::Ptr Registration\+::get\+Normals (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud,  }\item[{double}]{search\+Radius }\end{DoxyParamCaption})}
+
+Estimate the normals for a cloud. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ cloud used for normal estimation \\
+\hline
+\mbox{\texttt{ in}}  & {\em search\+Radius} & -\/ used for normal estimation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to calculated normals 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_registration_a40b63b163a10733d8a808c9e83fa9d43}\label{class_registration_a40b63b163a10733d8a808c9e83fa9d43}} 
+\index{Registration@{Registration}!postprocess@{postprocess}}
+\index{postprocess@{postprocess}!Registration@{Registration}}
+\doxysubsubsection{\texorpdfstring{postprocess()}{postprocess()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Registration\+::postprocess (\begin{DoxyParamCaption}\item[{typename pcl\+::\+Point\+Cloud$<$ T $>$\+::Ptr}]{cloud,  }\item[{int}]{meanK,  }\item[{double}]{thresh }\end{DoxyParamCaption})}
+
+Uses a statistical outlier removal filter to postprocess clouds. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em cloud} & -\/ the cloud to postprocess \\
+\hline
+\mbox{\texttt{ in}}  & {\em meanK} & -\/ the number of neighbors to use for calculating the mean \\
+\hline
+\mbox{\texttt{ in}}  & {\em thresh} & -\/ the maximum allowed distance of a point with respect to the calculated mean as a multiple of the standard deviation \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Registration.\+h\end{DoxyCompactItemize}

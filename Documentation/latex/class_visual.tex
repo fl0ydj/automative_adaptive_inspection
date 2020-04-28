@@ -1,0 +1,232 @@
+\hypertarget{class_visual}{}\doxysection{Visual Class Reference}
+\label{class_visual}\index{Visual@{Visual}}
+
+
+Class for Visualization of Point Clouds.  
+
+
+
+
+{\ttfamily \#include $<$Visual.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW \mbox{\hyperlink{class_visual_ab32bb263b12b1e740b9c7a43b1743393}{Visual}} ()
+\item 
+\mbox{\hyperlink{class_visual_af36a11a92064bdb427cfbc0a79717414}{Visual}} (std\+::string name, P\+T\+C\+::\+Ptr cloud)
+\item 
+\mbox{\hyperlink{class_visual_a11e099a8a9ac257fe09db8b5e7a171f3}{Visual}} (std\+::string name, P\+T\+C\+::\+Ptr cloud, P\+T\+C\+::\+Ptr component)
+\item 
+\mbox{\hyperlink{class_visual_ac7ec8af7726b4b25f260b976b72456f6}{Visual}} (std\+::string name, P\+T\+C\+::\+Ptr cloudA, P\+T\+C\+::\+Ptr cloudB, P\+T\+C\+::\+Ptr cloudC)
+\item 
+\mbox{\hyperlink{class_visual_a2a2a5a3faa4fd5a1ffac2e00cf0ad13f}{Visual}} (std\+::string name, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Point\+X\+Y\+Z\+R\+GB $>$\+::Ptr cloud)
+\item 
+void \mbox{\hyperlink{class_visual_ae221ed5df71e277167d3152ba49ff698}{update\+Cloud}} (P\+T\+C\+::\+Ptr cloud)
+\item 
+void \mbox{\hyperlink{class_visual_aacb0e75878432c044452d8b1ced86120}{update\+Cloud}} (P\+T\+C\+::\+Ptr cloud, P\+T\+C\+::\+Ptr component)
+\item 
+void \mbox{\hyperlink{class_visual_a77ea5eafd111a68dae428b6de882f166}{update\+Cloud}} (P\+T\+C\+::\+Ptr cloudA, P\+T\+C\+::\+Ptr cloudB, P\+T\+C\+::\+Ptr cloudC)
+\item 
+void \mbox{\hyperlink{class_visual_a9dd5e1efd9fe90da19975f1cea3e2b55}{update\+Cloud}} (pcl\+::\+Point\+Cloud$<$ pcl\+::\+Point\+X\+Y\+Z\+R\+GB $>$\+::Ptr color\+Cloud)
+\item 
+void \mbox{\hyperlink{class_visual_aa4b938a62e390393c2e347fb1ef5cdac}{process\+Output}} ()
+\item 
+void \mbox{\hyperlink{class_visual_aec4f6fb6316a52ed213f0de7913463d6}{add\+Text}} (std\+::string text, char color=\textquotesingle{}0\textquotesingle{})
+\item 
+void \mbox{\hyperlink{class_visual_af1889964f5c95ad2b860dc2c9402a865}{add\+Text}} (std\+::string text, PT position, int r=255, int g=255, int b=255)
+\item 
+void \mbox{\hyperlink{class_visual_a9cb7845e9614ed02d34a610e2fb9bf69}{add\+Normals}} (P\+T\+C\+::\+Ptr cloud, pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr normals)
+\item 
+void \mbox{\hyperlink{class_visual_a3427a3d2a877369baac90a9a6113569c}{close\+Viewer}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for Visualization of Point Clouds. 
+
+\begin{DoxyAuthor}{Author}
+Justin Heinz 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_visual_ab32bb263b12b1e740b9c7a43b1743393}\label{class_visual_ab32bb263b12b1e740b9c7a43b1743393}} 
+\index{Visual@{Visual}!Visual@{Visual}}
+\index{Visual@{Visual}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{Visual()}{Visual()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW Visual\+::\+Visual (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor \mbox{\Hypertarget{class_visual_af36a11a92064bdb427cfbc0a79717414}\label{class_visual_af36a11a92064bdb427cfbc0a79717414}} 
+\index{Visual@{Visual}!Visual@{Visual}}
+\index{Visual@{Visual}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{Visual()}{Visual()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily Visual\+::\+Visual (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{P\+T\+C\+::\+Ptr}]{cloud }\end{DoxyParamCaption})}
+
+Constructor to show the camera cloud in a new P\+C\+L\+Visualizer window with a specific name. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & -\/ the name of the window \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ the cloud to be visualized (green) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_visual_a11e099a8a9ac257fe09db8b5e7a171f3}\label{class_visual_a11e099a8a9ac257fe09db8b5e7a171f3}} 
+\index{Visual@{Visual}!Visual@{Visual}}
+\index{Visual@{Visual}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{Visual()}{Visual()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily Visual\+::\+Visual (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{P\+T\+C\+::\+Ptr}]{cloud,  }\item[{P\+T\+C\+::\+Ptr}]{component }\end{DoxyParamCaption})}
+
+Constructor to show the camera cloud as well as the component cloud in a new P\+C\+L\+Visualizer window with a specific name. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & -\/ the name of the window \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ the camera cloud to be visualized (green) \\
+\hline
+\mbox{\texttt{ in}}  & {\em component} & -\/ the component cloud to be visualized (red) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_visual_ac7ec8af7726b4b25f260b976b72456f6}\label{class_visual_ac7ec8af7726b4b25f260b976b72456f6}} 
+\index{Visual@{Visual}!Visual@{Visual}}
+\index{Visual@{Visual}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{Visual()}{Visual()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily Visual\+::\+Visual (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{P\+T\+C\+::\+Ptr}]{cloudA,  }\item[{P\+T\+C\+::\+Ptr}]{cloudB,  }\item[{P\+T\+C\+::\+Ptr}]{cloudC }\end{DoxyParamCaption})}
+
+Constructor to show three clouds in a new P\+C\+L\+Visualizer window with a specific name. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & -\/ the name of the window \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloudA} & -\/ the first cloud to be visualized (green) \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloudB} & -\/ the second cloud to be visualized (red) \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloudC} & -\/ the third cloud to be visualized (blue) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_visual_a2a2a5a3faa4fd5a1ffac2e00cf0ad13f}\label{class_visual_a2a2a5a3faa4fd5a1ffac2e00cf0ad13f}} 
+\index{Visual@{Visual}!Visual@{Visual}}
+\index{Visual@{Visual}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{Visual()}{Visual()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily Visual\+::\+Visual (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Point\+X\+Y\+Z\+R\+GB $>$\+::Ptr}]{cloud }\end{DoxyParamCaption})}
+
+Constructor to show the a colored cloud in a new P\+C\+L\+Visualizer window with a specific name. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & -\/ the name of the window \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ the R\+GB cloud to be visualized \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_visual_a9cb7845e9614ed02d34a610e2fb9bf69}\label{class_visual_a9cb7845e9614ed02d34a610e2fb9bf69}} 
+\index{Visual@{Visual}!addNormals@{addNormals}}
+\index{addNormals@{addNormals}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{addNormals()}{addNormals()}}
+{\footnotesize\ttfamily void Visual\+::add\+Normals (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud,  }\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Normal $>$\+::Ptr}]{normals }\end{DoxyParamCaption})}
+
+Adds normals to a cloud in the visualizer. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ the cloud to attach normals to \\
+\hline
+\mbox{\texttt{ in}}  & {\em normals} & -\/ pointer to the normals to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_visual_aec4f6fb6316a52ed213f0de7913463d6}\label{class_visual_aec4f6fb6316a52ed213f0de7913463d6}} 
+\index{Visual@{Visual}!addText@{addText}}
+\index{addText@{addText}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{addText()}{addText()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Visual\+::add\+Text (\begin{DoxyParamCaption}\item[{std\+::string}]{text,  }\item[{char}]{color = {\ttfamily \textquotesingle{}0\textquotesingle{}} }\end{DoxyParamCaption})}
+
+Adds a 2D Text to the visualizer. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em text} & -\/ the text to display \\
+\hline
+\mbox{\texttt{ in}}  & {\em color} & -\/ For \char`\"{}r\char`\"{}, the text is displayed in red with a slight vertical offset in the upper left hand corner. For \char`\"{}g\char`\"{}, the text is displayed in green in the upper left hand corner. Else, the text is displayed in white in the upper left hand corner. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_visual_af1889964f5c95ad2b860dc2c9402a865}\label{class_visual_af1889964f5c95ad2b860dc2c9402a865}} 
+\index{Visual@{Visual}!addText@{addText}}
+\index{addText@{addText}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{addText()}{addText()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Visual\+::add\+Text (\begin{DoxyParamCaption}\item[{std\+::string}]{text,  }\item[{PT}]{position,  }\item[{int}]{r = {\ttfamily 255},  }\item[{int}]{g = {\ttfamily 255},  }\item[{int}]{b = {\ttfamily 255} }\end{DoxyParamCaption})}
+
+Adds a 3D Text to the visualizer. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em text} & -\/ the text to display \\
+\hline
+\mbox{\texttt{ in}}  & {\em position} & -\/ Sets the position of the upper left hand corner of the text. \\
+\hline
+\mbox{\texttt{ in}}  & {\em r} & -\/ Sets the red value \\
+\hline
+\mbox{\texttt{ in}}  & {\em g} & -\/ Sets the green value \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & -\/ Sets the blue value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_visual_a3427a3d2a877369baac90a9a6113569c}\label{class_visual_a3427a3d2a877369baac90a9a6113569c}} 
+\index{Visual@{Visual}!closeViewer@{closeViewer}}
+\index{closeViewer@{closeViewer}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{closeViewer()}{closeViewer()}}
+{\footnotesize\ttfamily void Visual\+::close\+Viewer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Closes the viewer window. \mbox{\Hypertarget{class_visual_aa4b938a62e390393c2e347fb1ef5cdac}\label{class_visual_aa4b938a62e390393c2e347fb1ef5cdac}} 
+\index{Visual@{Visual}!processOutput@{processOutput}}
+\index{processOutput@{processOutput}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{processOutput()}{processOutput()}}
+{\footnotesize\ttfamily void Visual\+::process\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Updates the window. Waits for the user to press S\+P\+A\+CE. \mbox{\Hypertarget{class_visual_a9dd5e1efd9fe90da19975f1cea3e2b55}\label{class_visual_a9dd5e1efd9fe90da19975f1cea3e2b55}} 
+\index{Visual@{Visual}!updateCloud@{updateCloud}}
+\index{updateCloud@{updateCloud}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{updateCloud()}{updateCloud()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void Visual\+::update\+Cloud (\begin{DoxyParamCaption}\item[{pcl\+::\+Point\+Cloud$<$ pcl\+::\+Point\+X\+Y\+Z\+R\+GB $>$\+::Ptr}]{color\+Cloud }\end{DoxyParamCaption})}
+
+Updates the colored cloud visualized. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ the cloud to be updated \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_visual_ae221ed5df71e277167d3152ba49ff698}\label{class_visual_ae221ed5df71e277167d3152ba49ff698}} 
+\index{Visual@{Visual}!updateCloud@{updateCloud}}
+\index{updateCloud@{updateCloud}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{updateCloud()}{updateCloud()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void Visual\+::update\+Cloud (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud }\end{DoxyParamCaption})}
+
+Updates the cloud visualized. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ the cloud to be updated \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_visual_aacb0e75878432c044452d8b1ced86120}\label{class_visual_aacb0e75878432c044452d8b1ced86120}} 
+\index{Visual@{Visual}!updateCloud@{updateCloud}}
+\index{updateCloud@{updateCloud}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{updateCloud()}{updateCloud()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void Visual\+::update\+Cloud (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloud,  }\item[{P\+T\+C\+::\+Ptr}]{component }\end{DoxyParamCaption})}
+
+Updates the clouds visualized. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cloud} & -\/ the cloud to be updated \\
+\hline
+\mbox{\texttt{ in}}  & {\em component} & -\/ the component cloud to be updated \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_visual_a77ea5eafd111a68dae428b6de882f166}\label{class_visual_a77ea5eafd111a68dae428b6de882f166}} 
+\index{Visual@{Visual}!updateCloud@{updateCloud}}
+\index{updateCloud@{updateCloud}!Visual@{Visual}}
+\doxysubsubsection{\texorpdfstring{updateCloud()}{updateCloud()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void Visual\+::update\+Cloud (\begin{DoxyParamCaption}\item[{P\+T\+C\+::\+Ptr}]{cloudA,  }\item[{P\+T\+C\+::\+Ptr}]{cloudB,  }\item[{P\+T\+C\+::\+Ptr}]{cloudC }\end{DoxyParamCaption})}
+
+Updates the clouds visualized. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em cloudA} & -\/ the first cloud to be updated \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloudB} & -\/ the second cloud to be updated \\
+\hline
+\mbox{\texttt{ in}}  & {\em cloudC} & -\/ the third cloud to be updated \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Visual.\+h\end{DoxyCompactItemize}

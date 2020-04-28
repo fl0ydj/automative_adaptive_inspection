@@ -1,0 +1,108 @@
+\hypertarget{struct_dimension}{}\doxysection{Dimension Struct Reference}
+\label{struct_dimension}\index{Dimension@{Dimension}}
+
+
+Struct for saving all important information about a tolerance.  
+
+
+
+
+{\ttfamily \#include $<$Dimension.\+hpp$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW int \mbox{\hyperlink{struct_dimension_a16226f12db5c1dbf6a0c1db5daa83d3e}{id}}
+\item 
+std\+::vector$<$ P\+T\+C\+::\+Ptr $>$ \mbox{\hyperlink{struct_dimension_ab9286ad1ecce7dddaf32cb24c7ef750a}{references}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{struct_dimension_a56d802efad3b9cb9153260485cae37fc}{coeffs}}
+\item 
+int \mbox{\hyperlink{struct_dimension_a15cd48618397224cb15e569c6f8d3cc4}{type}}
+\item 
+PT \mbox{\hyperlink{struct_dimension_adee0ad6bed6b6719277e23fcb1e04af0}{textposition}}
+\item 
+double \mbox{\hyperlink{struct_dimension_a8a7539ae7426dda4c072381fd4259d02}{value}}
+\item 
+\mbox{\Hypertarget{struct_dimension_ae1bfd55e9297303c46e95ca30d12c42b}\label{struct_dimension_ae1bfd55e9297303c46e95ca30d12c42b}} 
+double {\bfseries upper\+Delta}
+\item 
+\mbox{\Hypertarget{struct_dimension_a28caa10895b4520de970fad4b6d757b2}\label{struct_dimension_a28caa10895b4520de970fad4b6d757b2}} 
+double {\bfseries lower\+Delta}
+\item 
+double \mbox{\hyperlink{struct_dimension_a7594a10e03b0661bd871711ef865de71}{measured}}
+\item 
+bool \mbox{\hyperlink{struct_dimension_a44b3dbe26c2d4b5892e1dc46daa22eea}{ok}}
+\item 
+std\+::vector$<$ P\+T\+C\+::\+Ptr $>$ \mbox{\hyperlink{struct_dimension_a135e0d09402979d0e56570f9c033c1db}{measured\+References}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct for saving all important information about a tolerance. 
+
+\begin{DoxyAuthor}{Author}
+Justin Heinz 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_dimension_a56d802efad3b9cb9153260485cae37fc}\label{struct_dimension_a56d802efad3b9cb9153260485cae37fc}} 
+\index{Dimension@{Dimension}!coeffs@{coeffs}}
+\index{coeffs@{coeffs}!Dimension@{Dimension}}
+\doxysubsubsection{\texorpdfstring{coeffs}{coeffs}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ Dimension\+::coeffs}
+
+Coefficients of the referenced geometries used to define the tolerance. \mbox{\Hypertarget{struct_dimension_a16226f12db5c1dbf6a0c1db5daa83d3e}\label{struct_dimension_a16226f12db5c1dbf6a0c1db5daa83d3e}} 
+\index{Dimension@{Dimension}!id@{id}}
+\index{id@{id}!Dimension@{Dimension}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+EW int Dimension\+::id}
+
+Tolerance ID as defined in the JT file. \mbox{\Hypertarget{struct_dimension_a7594a10e03b0661bd871711ef865de71}\label{struct_dimension_a7594a10e03b0661bd871711ef865de71}} 
+\index{Dimension@{Dimension}!measured@{measured}}
+\index{measured@{measured}!Dimension@{Dimension}}
+\doxysubsubsection{\texorpdfstring{measured}{measured}}
+{\footnotesize\ttfamily double Dimension\+::measured}
+
+The measured value for the tolerance. \mbox{\Hypertarget{struct_dimension_a135e0d09402979d0e56570f9c033c1db}\label{struct_dimension_a135e0d09402979d0e56570f9c033c1db}} 
+\index{Dimension@{Dimension}!measuredReferences@{measuredReferences}}
+\index{measuredReferences@{measuredReferences}!Dimension@{Dimension}}
+\doxysubsubsection{\texorpdfstring{measuredReferences}{measuredReferences}}
+{\footnotesize\ttfamily std\+::vector$<$P\+T\+C\+::\+Ptr$>$ Dimension\+::measured\+References}
+
+Clouds of the referenced geometries used to measure the value for the toleranced. \mbox{\Hypertarget{struct_dimension_a44b3dbe26c2d4b5892e1dc46daa22eea}\label{struct_dimension_a44b3dbe26c2d4b5892e1dc46daa22eea}} 
+\index{Dimension@{Dimension}!ok@{ok}}
+\index{ok@{ok}!Dimension@{Dimension}}
+\doxysubsubsection{\texorpdfstring{ok}{ok}}
+{\footnotesize\ttfamily bool Dimension\+::ok}
+
+Set to true, if measured value is within specified limits. False otherwise. \mbox{\Hypertarget{struct_dimension_ab9286ad1ecce7dddaf32cb24c7ef750a}\label{struct_dimension_ab9286ad1ecce7dddaf32cb24c7ef750a}} 
+\index{Dimension@{Dimension}!references@{references}}
+\index{references@{references}!Dimension@{Dimension}}
+\doxysubsubsection{\texorpdfstring{references}{references}}
+{\footnotesize\ttfamily std\+::vector$<$P\+T\+C\+::\+Ptr$>$ Dimension\+::references}
+
+Clouds of the referenced geometries used to define the tolerance. \mbox{\Hypertarget{struct_dimension_adee0ad6bed6b6719277e23fcb1e04af0}\label{struct_dimension_adee0ad6bed6b6719277e23fcb1e04af0}} 
+\index{Dimension@{Dimension}!textposition@{textposition}}
+\index{textposition@{textposition}!Dimension@{Dimension}}
+\doxysubsubsection{\texorpdfstring{textposition}{textposition}}
+{\footnotesize\ttfamily PT Dimension\+::textposition}
+
+Point to define the position of the 3D text. \mbox{\Hypertarget{struct_dimension_a15cd48618397224cb15e569c6f8d3cc4}\label{struct_dimension_a15cd48618397224cb15e569c6f8d3cc4}} 
+\index{Dimension@{Dimension}!type@{type}}
+\index{type@{type}!Dimension@{Dimension}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily int Dimension\+::type}
+
+Type of the tolerance\+: 1 -\/ linear 2 -\/ angular 3 -\/ Radial 4 -\/ curve length (not implemented) 5 -\/ flatness 6 -\/ circularity \mbox{\Hypertarget{struct_dimension_a8a7539ae7426dda4c072381fd4259d02}\label{struct_dimension_a8a7539ae7426dda4c072381fd4259d02}} 
+\index{Dimension@{Dimension}!value@{value}}
+\index{value@{value}!Dimension@{Dimension}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily double Dimension\+::value}
+
+The value of the tolerance and the upper and lower allowed deviation. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Dimension.\+hpp\end{DoxyCompactItemize}

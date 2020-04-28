@@ -1,0 +1,28 @@
+This is the code documentation for the Bachelor\textquotesingle{}s Thesis \char`\"{}\+Adaptive Analysis of Geometric Tolerances with Low-\/\+Cost Sensors\char`\"{}. \hypertarget{index_autotoc_md0}{}\doxysection{How to setup the programming environment}\label{index_autotoc_md0}
+In the following it is described briefly how to setup all necessary libraries used in this project.
+
+The references are set mostly using variables in C\+Make\+Lists.\+txt which have to be updated accordingly. Alternatively, environment variables could be set. \hypertarget{index_autotoc_md1}{}\doxysubsection{Visual Studio and Cmake}\label{index_autotoc_md1}
+Visual Studio 2019 was used and can be downloaded here\+: \href{https://visualstudio.microsoft.com/vs/}{\texttt{ https\+://visualstudio.\+microsoft.\+com/vs/}}. Visual Studio Cmake Tools have to be installed.
+
+Furthermore, Cmake itself has to be installed. The minimum version is 3.\+6\+: \href{https://cmake.org/download/}{\texttt{ https\+://cmake.\+org/download/}}. \hypertarget{index_autotoc_md2}{}\doxysubsection{Turntable H\+W-\/\+Control}\label{index_autotoc_md2}
+The files have to be downloaded from the github directory and the source code has to be built.
+
+Afterwards, in C\+Make\+Lists T\+U\+R\+N\+T\+A\+B\+L\+E\+\_\+\+D\+IR has to be adjusted and D\+L\+L\+\_\+\+T\+U\+R\+N\+T\+A\+B\+LE has to be checked. \hypertarget{index_autotoc_md3}{}\doxysubsection{Realsense S\+DK}\label{index_autotoc_md3}
+The realsense sdk can be downloaded here\+: \href{https://github.com/IntelRealSense/librealsense/releases}{\texttt{ https\+://github.\+com/\+Intel\+Real\+Sense/librealsense/releases}}.
+
+Version 2.\+33.\+1 was used for this project. Adjust R\+E\+A\+L\+S\+E\+N\+S\+E\+\_\+\+D\+IR in Cmake\+Lists accordingly. \hypertarget{index_autotoc_md4}{}\doxysubsection{Point Cloud Library}\label{index_autotoc_md4}
+P\+CL can be downloaded here\+: \href{https://github.com/PointCloudLibrary/pcl/releases}{\texttt{ https\+://github.\+com/\+Point\+Cloud\+Library/pcl/releases}}. The Version used for this project was 1.\+9.\+1.
+
+Using the windows installer, an environment variable should be set automatically. If not, add it manually\+: P\+C\+L\+\_\+\+R\+O\+OT (to the root directory of P\+CL).
+
+Furthermore add P\+C\+L\+\_\+\+R\+O\+OT\%\textbackslash{}bin to your P\+A\+TH variable. \hypertarget{index_autotoc_md5}{}\doxysubsection{Open CV}\label{index_autotoc_md5}
+Download Open\+CV and compile it\+: \href{https://github.com/opencv/opencv}{\texttt{ https\+://github.\+com/opencv/opencv}}.
+
+Open\+CV contrib has to be downloaded and built as well (some modules are used from that)\+: \href{https://github.com/opencv/opencv_contrib}{\texttt{ https\+://github.\+com/opencv/opencv\+\_\+contrib}}.
+
+Adjust O\+P\+E\+N\+C\+V\+\_\+\+D\+IR accordingly. \hypertarget{index_autotoc_md6}{}\doxysubsection{J\+T Open Library}\label{index_autotoc_md6}
+JT Open Libary can be downloaded here\+: \href{https://www.plm.automation.siemens.com/store/en-us/trial/jt2-open.html}{\texttt{ https\+://www.\+plm.\+automation.\+siemens.\+com/store/en-\/us/trial/jt2-\/open.\+html}}.
+
+After registration, a 60 days trial version begins.
+
+In C\+Make\+Lists the variables J\+T\+T\+K\+\_\+\+L\+IB and J\+T\+T\+K\+\_\+\+I\+N\+C\+L\+U\+DE have to be adjusted accordingly. 
