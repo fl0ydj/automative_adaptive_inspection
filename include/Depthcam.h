@@ -17,16 +17,13 @@ DISCLAIMER: THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 #include <string>
 #include <librealsense2/rs.hpp>
 #include <librealsense2/rs_advanced_mode.hpp>
-#include <pcl/octree/octree_pointcloud_changedetector.h>
 #include <pcl/PointIndices.h>
 #include <pcl/common/common.h>
-#include <vtkPLYReader.h>
 #include <pcl/filters/extract_indices.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <opencv2/opencv.hpp>
 #include <pcl/common/transforms.h>
-#include <pcl/io/pcd_io.h>
 #include <opencv2/aruco/charuco.hpp>
 #include <opencv2/core/eigen.hpp>
 #include <pcl/filters/passthrough.h>

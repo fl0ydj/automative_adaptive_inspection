@@ -23,6 +23,7 @@ int main()
 	cv::Mat boardImage;
 	board->draw(cv::Size(10000, 10000), boardImage, 10, 1);
 	cv::imwrite("charucoBild.jpg",boardImage);*/
+	JtkEntityFactory::init(JtkEntityFactory::JtkPARASOLID_ON, JtkEntityFactory::JtkENVIRONMENT_CURRENT);
 	Menu menu;
 	std::map<std::string, std::function<void()>>  funcMap = {
 		{ "extrinsics", std::function<void(void)>(std::bind(&Menu::extrinsics, &menu))},
@@ -63,6 +64,7 @@ int main()
 			std::cout << "The given function is not available. Type \"h\" for help.\n";
 		}
 	}
+	JtkEntityFactory::fini();
 	return 0;
 }
 

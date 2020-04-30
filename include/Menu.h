@@ -60,7 +60,6 @@ In CMakeLists the variables JTTK_LIB and JTTK_INCLUDE have to be adjusted accord
 #ifndef MENU_H_
 #define MENU_H_
 #include "Depthcam.h"
-#include "Registration.h"
 #include "Comparison.h"
 #include "FileIO.h"
 #include "HW_control.h"

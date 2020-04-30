@@ -11,6 +11,8 @@ Redistribution and use in source and binary forms, with or without modification,
 DISCLAIMER: THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "FileIO.h"
+//HELPER FUNCTION
+//Source: SIEMENS PLM (c)
 bool processSurface(JtkXTSurface* surface, PTC::Ptr cloud, std::vector<double>& coeffs,PT& textposition)
 {
     JtkEntity::TypeID surfaceType = surface->typeID();
@@ -83,6 +85,8 @@ bool processSurface(JtkXTSurface* surface, PTC::Ptr cloud, std::vector<double>& 
     }
     return true;
 }
+//HELPER FUNCTION
+//Source: SIEMENS PLM (c)
 bool processCurve(JtkXTCurve* curve,JtkXTEdge* edge,PTC::Ptr cloud,std::vector<double>& coeffs,PT& textposition, bool limitsSurface)
 {
     JtkEntity::TypeID curveType = curve->typeID();
@@ -252,7 +256,8 @@ bool findXTBRepwithID(JtkXTBody* body,int id,int type,PTC::Ptr cloud,std::vector
 	}
     return false;
 }
-//SIEMENS PLM (c)
+//HELPER FUNCTION
+//Source: SIEMENS PLM (c)
 int
 nodeCrawler(JtkHierarchy* CurrNode, int level, JtkClientData*)
 {
@@ -261,7 +266,7 @@ nodeCrawler(JtkHierarchy* CurrNode, int level, JtkClientData*)
 		int numBodies;
 		((JtkPart*)CurrNode)->numXtBodies(numBodies);
 		int index = 0;
-		JtkXTBody* part;
+	    JtkXTBody* part=NULL;
 		int error;
 		((JtkPart*)CurrNode)->getBody(index, part, error);
 
@@ -355,6 +360,7 @@ nodeCrawler(JtkHierarchy* CurrNode, int level, JtkClientData*)
                 }
 			}
 		}
+        part = NULL;
 	}
 	return 1;
 }
@@ -411,35 +417,42 @@ template bool FileIO::loadCloud<PT>(std::string text, PTC::Ptr cloud, std::strin
 template bool FileIO::loadCloud<pcl::PointXYZRGB>(std::string text, pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud, std::string def, bool scalingRequired);
 bool FileIO::loadTolerances(std::string path) {
     if (path == "") {
-        std::cout << "What is the file containing the tolerance information? (supported: .jt; type \"no\" if tolerances are not needed)\n";
+        std::cout << "What is the file containing the tolerance information? (supported: .jt)\n";
         std::cin >> path;
     }
-    if (path != "no" && (path.substr(path.size() - 3) == ".jt" || path.substr(path.size() - 4) == ".jt\""))
+    if (path.substr(path.size() - 3) == ".jt" || path.substr(path.size() - 4) == ".jt\"")
     {
-        JtkEntityFactory::init(JtkEntityFactory::JtkPARASOLID_ON, JtkEntityFactory::JtkENVIRONMENT_CURRENT);
         try {
             JtkEntityPtr<JtkCADImporter> cadImp = JtkEntityFactory::createCADImporter();
             // cset the imported to read all the LODs, Tessellation and Brep
             cadImp->setShapeLoadOption(JtkCADImporter::JtkALL_LODS);
             cadImp->setBrepLoadOption(JtkCADImporter::JtkTESS_AND_BREP);
             cadImp->setXTBrepEditOption(JtkCADImporter::JtkXTBREP_FOR_EDIT_ON);
-            JtkEntityPtr<JtkHierarchy>  root;
-            root = cadImp->import(path.c_str());
-            // Create a traverser to traver down the JtTk graph
-            JtkEntityPtr<JtkTraverser> trav = JtkEntityFactory::createTraverser();
-            trav->setupPreActionCallback(nodeCrawler);
-            trav->traverseGraph(root);
+            {
+                JtkEntityPtr<JtkHierarchy>  root;
+                root = cadImp->import(path.c_str());
+                {
+                    // Create a traverser to traver down the JtTk graph
+                    JtkEntityPtr<JtkTraverser> trav = JtkEntityFactory::createTraverser();
+                    trav->setupPreActionCallback(nodeCrawler);
+                    trav->traverseGraph(root);
+                    trav = NULL;
+                }
+                root = NULL;
+            }
+            cadImp = NULL;
         }
         catch (std::exception e) {
             PCL_ERROR("The PMI information could not be extracted.\n");
             return false;
         }
-        JtkEntityFactory::fini();
         tolerances = tmp;
         std::cout << "Tolerance definition loaded.\n";
     }
-    else
+    else {
+        PCL_ERROR("Could not read tolerance definition.");
         return false;
+    }
 	if (!queryScaling<PT>(path))
 		return false;
 	return true;

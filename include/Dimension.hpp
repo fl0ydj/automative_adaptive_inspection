@@ -20,7 +20,6 @@ typedef pcl::PointCloud<PT> PTC;
 @author Justin Heinz
 */
 struct Dimension {
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
         /**
     Tolerance ID as defined in the JT file.
     */
@@ -42,9 +41,15 @@ Coefficients of the referenced geometries used to define the tolerance.
     */
     PT textposition;
     /**
-    The value of the tolerance and the upper and lower allowed deviation.
+    The value of the tolerance.
     */
-    double value, upperDelta, lowerDelta;
+    double value;
+    /**
+    The upper allowed deviation.
+    */
+    double upperDelta;
+    /** The lower allowed deviation. */
+    double lowerDelta;
     /**
     The measured value for the tolerance.
     */
