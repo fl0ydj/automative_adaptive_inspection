@@ -7,8 +7,8 @@ In the following it is described briefly how to setup all necessary libraries us
 The references are set mostly using variables in CMakeLists.txt which have to be updated accordingly. Alternatively, environment variables could be set.
 Visual Studio and Cmake
 -----------------------
-%Visual Studio 2019 was used and can be downloaded here: https://visualstudio.microsoft.com/vs/.
-%Visual Studio Cmake Tools have to be installed.
+Visual Studio 2019 was used and can be downloaded here: https://visualstudio.microsoft.com/vs/.
+Visual Studio Cmake Tools have to be installed.
 
 Furthermore, Cmake itself has to be installed. The minimum version is 3.6: https://cmake.org/download/.
 Turntable HW-Control
